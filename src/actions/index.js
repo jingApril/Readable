@@ -1,28 +1,20 @@
-export const ADD_RECIPE = 'ADD_RECIPE'
-export const REMOVE_FROM_CALENDAR = 'REMOVE_FROM_CALENDAR'
+export const ADD_POST = "ADD_POST";
+export const DELETE_POST = "DELETE_POST";
 
 
-export function addPost ({ day, recipe, meal }) {
+export function addPost ({ id, recipe, meal }) {
   return {
     type: ADD_POST,
     recipe,
-    day,
+    id,
     meal,
   }
 }
-export function deletePost ({ day, recipe, meal }) {
+export function deletePost ({ id, recipe, meal }) {
   return {
     type: DELETE_POST,
     recipe,
-    day,
+    id,
     meal,
   }
 }
-
-// export function removeFromCalendar ({ day, meal }) {
-//   return {
-//     type: REMOVE_FROM_CALENDAR,
-//     day,
-//     meal,
-//   }
-// }
