@@ -9,7 +9,22 @@ import PostList from './PostList'
 import DeletePost from './DeletePost'
 
 class App extends Component {
+    state = {
+        title: null,
+        author: null,
+        body: null,
+        category: null
+	}
+    newPost = ({ title, author, body,category }) => {
+	  this.setState(() => ({foodModalOpen: true, meal, day}))
+    }
+    deletePost = () => {
+    	this.setState(() => ({foodModalOpen: false, meal: null, day: null, food: null}))
+    }
+
   render() {
+    const {newPost, deletePost} = this.state
+    const { addPost, deletePost} = this.props
     return (
         <div>
             <header>
@@ -51,4 +66,18 @@ class App extends Component {
     }
 }
 
-export default App;
+function mapStateToProps(state) {
+    const {post} = state
+	return {
+		post
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		newPost: (data) => dispatch(addPost(data)),
+		removePost: (data) => dispatch(deletePost(data))
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

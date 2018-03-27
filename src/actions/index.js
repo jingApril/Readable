@@ -1,16 +1,16 @@
+import * as Api from '../Util/api'
+
 export const ADD_POST = "ADD_POST";
 export const DELETE_POST = "DELETE_POST";
 
 
-export function addPost ({ id, recipe, meal }) {
+export function addPost ({ id }) {
   return {
     type: ADD_POST,
-    recipe,
-    id,
-    meal,
+    post
   }
 }
-export function deletePost ({ id, recipe, meal }) {
+export function deletePost ({ id }) {
   return {
     type: DELETE_POST,
     recipe,

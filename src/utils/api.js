@@ -1,4 +1,4 @@
-const api = process.env.REACT_APP_CONTACTS_API_URL || 'http://localhost:3001';
+const api = 'http://localhost:3001';
 
 let token = localStorage.token;
 
@@ -10,7 +10,17 @@ const headers = {
     'Authorization': token
 };
 
+export const getCategories = () => {
+    fetch(`${api}/categories`, { method: 'GET', headers  })
+        .then(res =>res.json())
+        .then(data => data)
+}
 export const getAll = () =>
-    fetch(`${api}/posts`, { headers })
+    fetch(`${api}/posts`, { method: 'GET', headers })
         .then(res => res.json())
-        .then(data => data);
+        .then(data => console.log('data return is',data));
+
+export const getComments = (id) =>
+    fetch(`${api}/posts/${id}/comments`, { method: 'GET', headers})
+        .then(res => res.json())
+        .then(data => data)
