@@ -1,77 +1,48 @@
-import { combineReducers } from "redux";
-import { ADD_POST, DELETE_POST } from "../actions";
+import { combineReducers } from 'redux'
+import {FETCH_POSTS, FETCH_POSTS_SUCCESS,FETCH_POSTS_FAILURE} from '../actions'
+
+const initialPostState = { postsList:[], error:null, loading:false }
 
 
-const initialCalendarState = {
-	sunday: {
-		breakfast: null,
-		lunch: null,
-		dinner: null
-	},
-	monday: {
-		breakfast: null,
-		lunch: null,
-		dinner: null
-	},
-	tuesday: {
-		breakfast: null,
-		lunch: null,
-		dinner: null
-	},
-	wednesday: {
-		breakfast: null,
-		lunch: null,
-		dinner: null
-	},
-	thursday: {
-		breakfast: null,
-		lunch: null,
-		dinner: null
-	},
-	friday: {
-		breakfast: null,
-		lunch: null,
-		dinner: null
-	},
-	saturday: {
-		breakfast: null,
-		lunch: null,
-		dinner: null
-	}
-}
-
-function post (state = initialPostState, action) {
-
+function postsList (state = { }, action) {
    switch (action.type) {
-       case LOAD_SINGLE_POST_SUCCESS:
+
+       case FETCH_POSTS:
 	   return ({
 			...state,
 			[action.data.id]: action.data
 		});
-       case ADD_NEW_POST_SUCCESS:
-	   return ({
-			...state,
-			[action.data.id]: action.data
-		});
-       case EDIT_POST_SUCCESS:
-		   return ({
-			    ...state,
-			    [action.data.id]: action.data
-			});
-       case DELETE_POST_SUCCESS:
-           debugger;
-		   return {
-			  ...state,
-			  [action.data.id]:  null
-		  }
-       case VOTE_POST_SUCCESS:
-	   return ({
-			...state,
-			[action.data.id]: action.data
-		});
+
+       case FECTH_POSTS_SUCCESS:
+ 	   return ({
+ 			...state,
+ 			postsList: {posts: action.payload, error:null, loading: false}
+ 		});
+
+      case FETCH_POSTS_FAILURE:
+  	   return ({
+  			...state,
+  			postsList: {posts: action.payload, error:null, loading: false}
+  		});
        default:
            return state
    }
 }
 
-export default combineReducers({post})
+
+function categories( state = {}, action ) {
+  const { categories } = action
+
+  switch (action.type) {
+  case RECEIVE_CATEGORIES :
+    return {
+      ...state,
+      ...categories
+    }
+  default :
+    return state
+  }
+}
+
+
+export default combineReducers({post,categories})
