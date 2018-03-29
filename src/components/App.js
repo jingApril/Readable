@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
+import { Route } from 'react-router-dom'
 
 import { fetchPost, fetchPostsSuccess, fetchPostsFailure } from '../actions'
 import Modal from 'react-modal'
@@ -17,11 +18,8 @@ class App extends React.Component {
     state = {
       createPostModal: false,
       deletePostModal: false,
-      postsList: {
-          posts: [],
-          error: null,
-          loading: false
-      }
+      posts: [],
+      payload: {}
 	}
 
     componentDidMount() {
@@ -59,9 +57,19 @@ class App extends React.Component {
 
     }
 
+
+
   render() {
 
-    const {createPostModal, deletePostModal} = this.state
+  {console.log('next state', posts)}
+    const {createPostModal, posts, deletePostModal} = this.state
+    const mapStateToProps = (state) => {
+     return {
+       categories: state.categories
+       posts:state.posts
+     }
+    }
+
     return (
         <div>
             <header>
@@ -74,6 +82,10 @@ class App extends React.Component {
                         <div className="col-sm-4">
                             <h6>Recent updates</h6></div>
                         <div className="col-sm-8 d-flex flex-row-reverse">
+                          {this.props.categories.map() => (
+                            <li>{categories}</li>
+                          )
+                          }
                             <div className="p-2"><a href="#" className="text-primary">Kat4</a></div>
                             <div className="p-2"><a href="#" className="text-primary">Kat3</a></div>
                             <div className="p-2"><a href="#" className="text-primary">Kat2</a></div>
@@ -81,7 +93,13 @@ class App extends React.Component {
                             <div className="p-2">All Category</div>
                         </div>
                     </div>
-                    <PostList posts={this.state.posts}/>
+
+  {/* <Route  exact path='/' render={() => (
+  <PostList
+    posts={posts}
+  />
+)}/> */}
+
 
                 </div>
                 <div className="row d-flex flex-row-reverse">

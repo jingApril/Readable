@@ -21,11 +21,12 @@ const headers = {
 //    return data.categories
 // });
 
-// export const fetchCategories = () => {
-//     fetch(`${api}/categories`, { method: 'GET', headers  })
-//         .then(res =>res.json())
-//         .then(data => data)
-// }
+
+export const getAllCategories = () => {
+    fetch(`${api}/categories`, { method: 'GET', headers  })
+        .then(res =>res.json())
+        .then(data => data)
+}
 
 export const fetchAllPosts = () => {
     fetch(`${api}/posts`, { method: 'GET', headers })
