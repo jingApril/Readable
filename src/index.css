@@ -25,6 +25,12 @@ textarea{width:100%;}
 header h1 {
     text-align: center;
 }
+header a{
+  color:#000;
+}
+header a:hover{
+text-decoration: none
+}
 label {
     font-size: larger;
     color: blue;
