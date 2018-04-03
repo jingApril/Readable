@@ -52,27 +52,35 @@ export const fetchAllPosts = () => dispatch => (
 
 
 // 创建帖子 create post
-export const CREATE_POST = "CREATE_POST";
-export const CREATE_POST_SUCCESS = "CREATE_POST_SUCCESS";
-export const CREATE_POST_FAILURE = "CREATE_POST_FAILURE";
-export const RESET_NEW_POST = "RESET_NEW_POST";
 
+export const ADD_POST = 'ADD_POST'
+export const ADD_POST_DONE = 'ADD_POST_DONE'
+export const RESET_NEW_POST = 'RESET_NEW_POST'
 
-export const createPost =  () => ({
-    type: CREATE_POST,
+export const addPost = (post) => ({
+  type: ADD_POST,
+  post
 })
 
-export const createPostSuccess =  () => ({
-    type: CREATE_POST_SUCCESS,
+export const addPostDone = (post)  => ({
+  type: ADD_POST_DONE,
+  post
 })
 
-export const createPostFailure =  () => ({
-    type: CREATE_POST_FAILURE,
+export const resetPost = (post)  => ({
+  type: RESET_NEW_POST,
+  post
 })
 
-export const resetNewPost =  () => ({
-    type: RESET_NEW_POST,
-})
+
+
+// export const addPost = () => dispatch => (
+//   API.addPost()
+//       .then(data => data)
+//       .then(allposts => dispatch(requestPost(allposts)))
+// )
+
+
 
 
 

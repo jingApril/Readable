@@ -41,25 +41,17 @@ export const fetchComments = (id) => {
 }
 
 
-export const newPost = (newPost) => {
-    fetch(`${api}/posts`,{ method: 'POST', body: JSON.stringify(newPost), headers}
-    ).then(res => {
-        res.json(), console.log('res', res)
-    })
-     .then((data) => {dispatch(addPost(newPost))
-        }
-    )
-}
-
-
-
-
-// export const fetchAllPosts = () => {
-//     fetch(`${api}/posts`, { method: 'GET', headers })
-//         .then(res => res.json())
-//         .then(data => console.log('data return is',data));
+// export const newPost = (newPost) => {
+//     fetch(`${api}/posts`,{ method: 'POST', body: JSON.stringify(newPost), headers}
+//     ).then(res => {
+//         res.json(), console.log('res', res)
+//     })
+//      .then((data) => {dispatch(addPost(newPost))
+//         }
+//     )
 // }
-//
+
+
 // export const fetchComments = (id) => {
 //     fetch(`${api}/posts/${id}/comments`, { method: 'GET', headers})
 //         .then(res => res.json())

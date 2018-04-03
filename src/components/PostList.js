@@ -13,7 +13,7 @@ export default function PostList ({posts}){
 						<div className="col-sm-8 float-left" id="title_item_left">
 							<div className="d-inline p-2 text-dark">{post.author}</div>
 							<time datetime="2016-02-25T19:19:31.193Z">{post.timestamp}</time>
-							<div className="d-inline p-2 text-dark">{post.voteScore}
+							<div className="d-inline p-2 text-dark">{post.commentCount}
 							条评论</div>
 							<div className="d-inline p-2 text-dark">{post.voteScore}
 							Vote</div>
