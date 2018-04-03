@@ -41,16 +41,16 @@ export const fetchComments = (id) => {
 }
 
 
-export const newPost = (newPost) => {
-    fetch(`${api}/posts`,{ method: 'POST', body: JSON.stringify(newPost), headers}
-    ).then(res => {
-        res.json(), console.log('res', res)
+export const newPost = (postBody) => {
+    fetch(`${api}/posts`,{
+      method: 'POST',
+      body: JSON.stringify(postBody),
+      headers
     })
-     .then((data) => {dispatch(addPost(newPost))
-        }
-    )
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
 }
-
 
 
 

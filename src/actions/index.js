@@ -57,24 +57,16 @@ export const CREATE_POST_SUCCESS = "CREATE_POST_SUCCESS";
 export const CREATE_POST_FAILURE = "CREATE_POST_FAILURE";
 export const RESET_NEW_POST = "RESET_NEW_POST";
 
+export const ADD_POST = "ADD_POST";
 
-export const createPost =  () => ({
-    type: CREATE_POST,
+export const addPost = (post) => ({
+    type: ADD_POST,
+    post
 })
-
-export const createPostSuccess =  () => ({
-    type: CREATE_POST_SUCCESS,
-})
-
-export const createPostFailure =  () => ({
-    type: CREATE_POST_FAILURE,
-})
-
-export const resetNewPost =  () => ({
-    type: RESET_NEW_POST,
-})
-
-
+// export const savePost = () => dispatch => (
+//     API.newPost()
+//         .then(post => dispatch(addPost(post)))
+// )
 
 
 // 删除 delete post
