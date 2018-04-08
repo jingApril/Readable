@@ -26,7 +26,19 @@ export default function posts(state = [], action) {
 				? post = action.post
 				: post);
 		case 'ADD_POST':
-			return state;
+			//return state;
+			 return state
+			 // return [
+			 // ...state,
+			 // {
+				//  id,
+				//  timestamp,
+				//  title,
+				//  body,
+				//  author,
+				//  category
+			 // }
+		// ];
 		case 'DELETE_A_POST':
 			return state.filter(post => post.id !== action.id);
 

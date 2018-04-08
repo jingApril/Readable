@@ -17,7 +17,7 @@ export const ADD_A_COMMENT = 'ADD_A_COMMENT'
 
 export const GET_A_COMMENT = 'GET_A_COMMENT'
 
-<<<<<<< HEAD
+
 export const VOTE_A_COMMENT = 'VOTE_A_COMMENT'
 
 export const EDIT_A_COMMENT = 'EDIT_A_COMMENT'
@@ -52,19 +52,6 @@ export const getPostsbyCategory = (category) => dispatch => (
       })
     })
 )
-=======
-export const ADD_POST = "ADD_POST";
-
-export const addPost = (post) => ({
-    type: ADD_POST,
-    post
-})
-// export const savePost = () => dispatch => (
-//     API.newPost()
-//         .then(post => dispatch(addPost(post)))
-// )
->>>>>>> ca7c20edac9926a0abb3c6a2d4649cfe79a6b28e
-
 
 export const UPVOTE_A_POST = 'UPVOTE_A_POST'
 export const DOWNVOTE_A_POST = 'DOWNVOTE_A_POST'

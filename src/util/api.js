@@ -33,7 +33,6 @@ export const fetchPosts = () =>
         .then(res => res.json())
         .then(data => data)
 
-<<<<<<< HEAD
 export const fetchPostsByCategory = (category) =>
     fetch(`${api}/${category}/posts`, { method: 'GET', headers})
         .then(res => res.json())
@@ -87,25 +86,7 @@ export const newPost = (newPost) =>
 //   fetch(`${api}/posts/${id}/comments`, { method: 'GET',  headers})
 //      .then(res => res.json())
 //      .then(data => data)
-=======
-export const newPost = (postBody) => {
-    fetch(`${api}/posts`,{
-      method: 'POST',
-      body: JSON.stringify(postBody),
-      headers
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
-}
 
-
-
-// export const fetchAllPosts = () => {
-//     fetch(`${api}/posts`, { method: 'GET', headers })
-//         .then(res => res.json())
-//         .then(data => console.log('data return is',data));
->>>>>>> ca7c20edac9926a0abb3c6a2d4649cfe79a6b28e
 // }
 
 
