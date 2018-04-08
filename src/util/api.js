@@ -20,36 +20,76 @@ const headers = {
 //         })
 // }
 
-export const fetchPostsByCategory = (category) =>
-fetch(`${api}/${category}/posts`, { method: 'GET', headers})
-    .then(res => res.json())
+
 
 
 export const fetchAllCategories = () =>
-fetch(`${api}/categories`, {method: 'GET',  headers})
-    .then(res => res.json())
-    .then(data => data.categories)
+    fetch(`${api}/categories`, {method: 'GET',  headers})
+        .then(res => res.json())
+        .then(data => data.categories)
 
-export const fetchAllPosts = () =>
-fetch(`${api}/posts`, { method: 'GET',headers})
-    .then(res => res.json())
+export const fetchPosts = () =>
+    fetch(`${api}/posts`, { method: 'GET',headers})
+        .then(res => res.json())
+        .then(data => data)
 
-export const fetchComments = (id) => {
-  fetch(`${api}/posts/${id}/comments`, { method: 'GET',  headers})
-     .then(res => res.json())
-     .then(data => data)
-}
+export const fetchPostsByCategory = (category) =>
+    fetch(`${api}/${category}/posts`, { method: 'GET', headers})
+        .then(res => res.json())
+        .then(data => data)
 
 
-// export const newPost = (newPost) => {
-//     fetch(`${api}/posts`,{ method: 'POST', body: JSON.stringify(newPost), headers}
-//     ).then(res => {
-//         res.json(), console.log('res', res)
-//     })
-//      .then((data) => {dispatch(addPost(newPost))
-//         }
-//     )
+
+export const votePost = (id, option) =>
+    fetch(`${api}/posts/${id}`, { method: 'POST', body: JSON.stringify({  option}),headers})
+        .then(res => res.json())
+
+
+export const editPost = (id, post) =>
+    fetch(`${api}/posts/${id}`, { method: 'PUT',body: JSON.stringify(post), headers})
+        .then(res => res.json())
+        .then(data => data)
+
+export const deletePost = (id) =>
+    fetch(`${api}/posts/${id}`, { method: 'DELETE', headers})
+        .then(res => res.json())
+        .then(data => data)
+
+
+export const newPost = (newPost) =>
+    fetch(`${api}/posts`,{
+        method: 'POST',
+        body:
+        JSON.stringify(newPost),
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers
+        }).then(res => {res.json(), console.log('res', res)})
+
+
+// 	fetch(`http://localhost:3001/posts`, {
+// 		method: 'POST',
+// 		body: postBody,
+// 		cache: 'no-cache',
+// 		credentials: 'same-origin',
+// 		headers: {
+// 			'Content-Type': 'application/json',
+// 			'Accept': 'application/json',
+// 			'Authorization': 'hello'
+// 		}
+// 	}).then(response => response.json()).then(data => data)
+
+
+
+
+// export const fetchComments = (id) => {
+//   fetch(`${api}/posts/${id}/comments`, { method: 'GET',  headers})
+//      .then(res => res.json())
+//      .then(data => data)
 // }
+
+
+
 
 
 // export const fetchComments = (id) => {

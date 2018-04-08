@@ -64,7 +64,8 @@ hr.side { border: solid #000000;
     content: "\e001"
 }
 
-
+.material-icons:hover{cursor: pointer;}
+#deletePost:hover{cursor: pointer;}
 #title_item_left{ padding-top: 10px; }
 #title_item_right i {
     padding: 8px;
@@ -82,3 +83,36 @@ main{ padding-bottom: 10%; }
 time {
     padding: 0 0.5rem;
 }
+#new-post{margin-right: 1.2rem;}
+
+.Modal {
+
+
+     background: none;
+     overflow: none;
+    border-radius: none;
+    outline: none;
+     padding:none;
+
+     position: fixed;
+         top: 0;
+         right: 0;
+         bottom: 0;
+         left: 0;
+         z-index: 1050;
+
+         overflow: hidden;
+         outline: 0;
+
+
+     opacity: 1;
+     z-index: 1072;
+     transition: opacity .15s linear;
+
+  }
+
+
+ .Overlay {
+
+    background-color: #000;
+  } 

@@ -1,219 +1,192 @@
 import * as API from '../util/api'
 
-// 获得 get post
-export const FETCH_POSTS = "FETCH_POST";
-export const FETCH_POSTS_SUCCESS = "FETCH_POSTS_SUCCESS";
-export const FETCH_POSTS_FAILURE = "FETCH_POSTS_FAILURE";
-export const RESET_POSTS = "RESET_POSTS";
+export const GET_CATEGORIES = 'GET_CATEGORIES'
 
-
-// 删除 delete post
-export const DELETE_POST = "DELETE_POST";
-export const DELETE_POST_SUCCESS = "DELETE_POST_SUCCESS";
-export const DELETE_POST_FAILURE = "DELETE_POST_FAILURE";
-export const RESET_DELETE_POST = "RESET_DELETE_POST";
-
-// 获取所有的分类 get categories Actions
-
-export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
-export const receiveCategories = categories => ({
-    type: RECEIVE_CATEGORIES,
-    categories
-})
-export const fetchAllCategories = () => dispatch => (
-    API.fetchAllCategories()
-        .then(categories => dispatch(receiveCategories(categories)))
-)
-
-// 获取某个分类帖子  posts by category Actions
-export const REQUEST_CATEGORY_POSTS = 'REQUEST_CATEGORY_POSTS'
-export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS'
-export const requestPostsByCat = (category,postsByCat) => ({
-    type: GET_CATEGORY_POSTS,
-    category,
-    postsByCat
-})
-export const fetchPostsByCat = (category) => dispatch => (
-    API.fetchPostsByCategory(category)
-        .then(data => dispatch(requestPostsByCat(category, data)))
-)
-
-
-// 获取所有帖子 get all posts Actions
 export const GET_POSTS = 'GET_POSTS'
-export const receiveAllPosts = (allposts) => ({
-    type: GET_POSTS,
-    allposts
+export const GET_POSTS_BYCAT = 'GET_POSTS_BYCAT'
+
+
+
+export const GET_A_POST = 'GET_A_POST'
+
+
+
+export const GET_COMMENTS = 'GET_COMMENTS'
+
+export const ADD_A_COMMENT = 'ADD_A_COMMENT'
+
+export const GET_A_COMMENT = 'GET_A_COMMENT'
+
+export const VOTE_A_COMMENT = 'VOTE_A_COMMENT'
+
+export const EDIT_A_COMMENT = 'EDIT_A_COMMENT'
+
+export const DELETE_A_COMMENT = 'DELETE_A_COMMENT'
+
+//
+export const receiveCategories = categories => ({
+  type: GET_CATEGORIES,
+  categories
 })
-export const fetchAllPosts = () => dispatch => (
-    API.fetchAllPosts()
-        .then(allposts => dispatch(receiveAllPosts(allposts)))
+export const getAllCategories = () => dispatch => (
+  API.fetchAllCategories()
+  .then(categories => dispatch(receiveCategories(categories)))
+)
+
+export const receivePosts = (posts) => ({
+    type: GET_POSTS,
+    posts
+  })
+export const getPosts = () => dispatch => (
+  API.fetchPosts()
+    .then(posts => dispatch(receivePosts(posts)))
+)
+
+export const getPostsbyCategory = (category) => dispatch => (
+  API.fetchPostsByCategory(category)
+    .then((posts) => {
+      dispatch({
+        type: GET_POSTS_BYCAT,
+        posts
+      })
+    })
 )
 
 
-// 创建帖子 create post
+export const UPVOTE_A_POST = 'UPVOTE_A_POST'
+export const DOWNVOTE_A_POST = 'DOWNVOTE_A_POST'
+export const EDIT_A_POST = 'EDIT_A_POST'
+export const DELETE_A_POST = 'DELETE_A_POST'
+
+
+export const upVotePost = (id) => dispatch => (
+	API.votePost(id, "upVote")
+	.then((post) => dispatch({
+		type: UPVOTE_A_POST,
+		post
+	}))
+	);
+
+export const downVotePost = (id) => dispatch => (
+	API.votePost(id, "downVote")
+	.then((post) => dispatch({
+		type: DOWNVOTE_A_POST,
+		post
+	}))
+	);
+
+export const editPost = (id, post) => dispatch => (
+	API.editPost(id, post)
+	.then((post) => {
+		dispatch({
+			type: EDIT_A_POST,
+			id,
+			post
+		})
+	})
+	);
+
+export const deletePost = (id) => dispatch => (
+    API.deletePost(id)
+        .then(() => dispatch({
+            type: DELETE_A_POST,
+            id
+        }))
+	);
+
 
 export const ADD_POST = 'ADD_POST'
-export const ADD_POST_DONE = 'ADD_POST_DONE'
-export const RESET_NEW_POST = 'RESET_NEW_POST'
-
-export const addPost = (post) => ({
-  type: ADD_POST,
-  post
-})
-
-export const addPostDone = (post)  => ({
-  type: ADD_POST_DONE,
-  post
-})
-
-export const resetPost = (post)  => ({
-  type: RESET_NEW_POST,
-  post
-})
+export const addPost = (post) => dispatch => (
+	API.newPost(post)
+	.then(post => dispatch({
+		type: ADD_POST,
+		post
+	}))
+	)
 
 
+    //
+    // export const getComments = (id) => ({
+    //   type: GET_COMMENTS,
+    //    id
+    //  })
+    //
+    // export const addAComment = (comment) => ({
+    //   type: ADD_A_COMMENT,
+    //   comment
+    // })
+    //
+    // export const getAComment = (id) => ({
+    //   type: GET_A_COMMENT,
+    //    id
+    //  })
+    //
+    // export const voteAComment = (id) => ({
+    //   type: VOTE_A_COMMENT,
+    //   id
+    // })
+    //
+    // export const editAComment = (id) => ({
+    //   type: EDIT_A_COMMENT,
+    //    id
+    //  })
+    //
+    // export const deleteAComment = (id) => ({
+    //   type: DELETE_A_COMMENT,
+    //   id
+    // })
+    //
+    // export const getComments = (id) => ({
+    //   type: GET_COMMENTS,
+    //    id
+    //  })
+    //
+    // export const addAComment = (comment) => ({
+    //   type: ADD_A_COMMENT,
+    //   comment
+    // })
+    //
+    // export const getAComment = (id) => ({
+    //   type: GET_A_COMMENT,
+    //    id
+    //  })
+    //
+    // export const voteAComment = (id) => ({
+    //   type: VOTE_A_COMMENT,
+    //   id
+    // })
+    //
+    // export const editAComment = (id) => ({
+    //   type: EDIT_A_COMMENT,
+    //    id
+    //  })
+    //
+    // export const deleteAComment = (id) => ({
+    //   type: DELETE_A_COMMENT,
+    //   id
+    // })
+    //
 
-// export const addPost = () => dispatch => (
-//   API.addPost()
-//       .then(data => data)
-//       .then(allposts => dispatch(requestPost(allposts)))
-// )
 
 
-
-
-
-
-// 删除 delete post
-// export const FETCH_COMMENTS = "FETCH_COMMENTS";
-// export const FETCH_COMMENTS_SUCCESS = "FETCH_COMMENTS_SUCCESS";
-// export const FETCH_COMMENTS_FAILURE = "FETCH_COMMENTS_FAILURE";
-// export const RESET_DELETE_POST = "RESET_DELETE_POST";
-//
-//
-// export const requestComments =  (id,comments) => ({
-//     type: FETCH_COMMENTS_SUCCESS,
-//     id,
-//     comments
+// export const getPostsByCat = (category, posts) => ({
+//   type: GET_CATEGORY_POSTS,
+//   posts,
+//   category
 // })
-//
-//
-// export const fetchComments = () => dispatch => (
-//     API.fetchComments(id)
-//         .then(comments => dispatch(requestComments(id,comments)))
-//         .then((response) => {
-//           if (!response.ok) {
-//             console.log('__response NOT OK, fetchComments');
-//             throw Error(response.statusText);
-//           }
-//           // console.log('__response OK, fetchComments', response);
-//           return response;
-//         })
-//
-//         .then((response) => response.json())
-//         .then((data) => {
-//
-//           console.log('___data from comments API', data);
-//           // Comments are returned as an array
-//           //  change them to Comment objects where key===comment.id
-//           //  NO arrays in store
-//           const commentsAsObjects = data.reduce((acc, commentData)=>{
-//             return {
-//               ...acc,
-//               [commentData.id]: commentData,
-//             }
-//           }, {})
-//
-//           return (
-//             dispatch({
-//               type: FETCH_COMMENTS_SUCCESS,
-//               comments: commentsAsObjects,
-//             })
-//           )}
-//         )
-//
-//         .catch(err => {
-//           console.error(err);  //  in case of render error
-//           dispatch({
-//             type: FETCH_COMMENTS_FAILURE,
-//             err,
-//             error: true,
-//           })
-//         });
-//
-// )
 
 
+// export const fetchPostsByCat = (category) => dispatch => (
+//   API.fetchPostsByCat(category)
+//     .then(posts => dispatch(getPostsByCat(category, posts))))
 
 
+// export const addPost = (post) => ({
+//   type: ADD_POST,
+//   post
+// }
 
-// export function fetchPostsSuccess(posts) {
-//      return {
-//      type: FETCH_POSTS_SUCCESS,
-//      postsList: posts
-//      };
-// }
-//
-// export function fetchPostsFailure(error) {
-//      return {
-//      type: FETCH_POSTS_FAILURE,
-//      postsList: error
-//      };
-// }
-//
-// export function createPost() {
-//      return {
-//      type: CREATE_POST,
-//      payload: fetchAllPost
-//      };
-// }
-//
-// export function createPostSuccess() {
-//      return {
-//      type: CREATE_POST_SUCCESS,
-//      payload: fetchAllPost
-//      };
-// }
-//
-// export function createPostFailure(error) {
-//      return {
-//      type: CREATE_POST_FAILURE,
-//      payload: error
-//      };
-// }
-//
-// export function resetNewPost() {
-//      return {
-//      type: RESET_NEW_POST,
-//      payload: null
-//      };
-// }
-//
-// export function deletePost() {
-//      return {
-//      type: DELETE_POST,
-//      payload: fetchAllPost
-//      };
-// }
-//
-// export function deletePostSuccess() {
-//      return {
-//      type: DELETE_POST_SUCCESS,
-//      payload: fetchAllPost
-//      };
-// }
-//
-// export function deletePostFailure(error) {
-//      return {
-//      type: DELETE_POST_FAILURE,
-//      payload: error
-//      };
-// }
-//
-// export function resetDeletePost() {
-//      return {
-//      type: RESET_DELETE_POST,
-//      payload: fetchAllPost
-//      };
-// }
+
+// export const newPost = () => dispatch => (
+//   API.newPost(post)
+//   .then(post => dispatch(addPost(post))))
