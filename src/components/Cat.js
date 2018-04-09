@@ -77,16 +77,12 @@ class Cat extends React.Component {
 										</div>
 									))
 								}
-								{/* <Switch>
-									<Route exact path='/' component={Categories}/>
-									<Route exact path='/:category' component={Categories}/>
-								</Switch> */}
 							</div>
 						</div>
 						<Switch>
-							<Route path="/" component={Posts}/>
-							<Route path="/:category" component={Posts}/>
-							<Route path="/:category/:id" component={Post}/>
+							<Route exact path="/" component={Posts}/>
+							<Route exact path="/:category" component={Posts}/>
+							<Route exact path="/:category/:id" component={Post}/>
 						</Switch>
 					</div>
 					<div className="row d-flex flex-row-reverse">

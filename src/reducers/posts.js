@@ -27,13 +27,13 @@ export default function posts(state =[], action) {
 				: post);
 
 		case 'ADD_POST':
-			 return state;
+			 //return state;
 			 //return state.map( posts.push(action.post));
 
-			 // return {
-			 //  ...state,
-			 //   post: action.post
-			 //  }
+			 return {
+			  ...state,
+			   post: action.post
+			  }
 
 		case 'DELETE_A_POST':
 			return state.filter(post => post.id !== action.id);
