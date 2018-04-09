@@ -20,9 +20,6 @@ const headers = {
 //         })
 // }
 
-
-
-
 export const fetchAllCategories = () =>
     fetch(`${api}/categories`, {method: 'GET',  headers})
         .then(res => res.json())
@@ -37,8 +34,6 @@ export const fetchPostsByCategory = (category) =>
     fetch(`${api}/${category}/posts`, { method: 'GET', headers})
         .then(res => res.json())
         .then(data => data)
-
-
 
 export const votePost = (id, option) =>
     fetch(`${api}/posts/${id}`, { method: 'POST', body: JSON.stringify({  option}),headers})
@@ -59,13 +54,18 @@ export const deletePost = (id) =>
 export const newPost = (newPost) =>
     fetch(`${api}/posts`,{
         method: 'POST',
-        body:
-        JSON.stringify(newPost),
+        body:JSON.stringify(newPost),
         cache: 'no-cache',
         credentials: 'same-origin',
         headers
-        }).then(res => {res.json(), console.log('res', res)})
+        })
+        .then(res => res.json())
+        .then(data => data)
+        //.then(res => {res.json(), console.log('res', res)})
 
+export const fetchOnePost = (id) =>
+	 fetch(`${api}/posts/${id}`, { method: 'GET', headers})
+	   .then(res => res.json());
 
 // 	fetch(`http://localhost:3001/posts`, {
 // 		method: 'POST',
@@ -80,17 +80,12 @@ export const newPost = (newPost) =>
 // 	}).then(response => response.json()).then(data => data)
 
 
-
-
 // export const fetchComments = (id) => {
 //   fetch(`${api}/posts/${id}/comments`, { method: 'GET',  headers})
 //      .then(res => res.json())
 //      .then(data => data)
 
 // }
-
-
-
 
 
 // export const fetchComments = (id) => {

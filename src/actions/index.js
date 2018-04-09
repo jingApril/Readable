@@ -6,22 +6,10 @@ export const GET_POSTS = 'GET_POSTS'
 export const GET_POSTS_BYCAT = 'GET_POSTS_BYCAT'
 
 
-
-export const GET_A_POST = 'GET_A_POST'
-
-
-
-export const GET_COMMENTS = 'GET_COMMENTS'
-
 export const ADD_A_COMMENT = 'ADD_A_COMMENT'
-
 export const GET_A_COMMENT = 'GET_A_COMMENT'
-
-
 export const VOTE_A_COMMENT = 'VOTE_A_COMMENT'
-
 export const EDIT_A_COMMENT = 'EDIT_A_COMMENT'
-
 export const DELETE_A_COMMENT = 'DELETE_A_COMMENT'
 
 //
@@ -38,6 +26,7 @@ export const receivePosts = (posts) => ({
     type: GET_POSTS,
     posts
   })
+
 export const getPosts = () => dispatch => (
   API.fetchPosts()
     .then(posts => dispatch(receivePosts(posts)))
@@ -57,7 +46,6 @@ export const UPVOTE_A_POST = 'UPVOTE_A_POST'
 export const DOWNVOTE_A_POST = 'DOWNVOTE_A_POST'
 export const EDIT_A_POST = 'EDIT_A_POST'
 export const DELETE_A_POST = 'DELETE_A_POST'
-
 
 export const upVotePost = (id) => dispatch => (
 	API.votePost(id, "upVote")
@@ -94,7 +82,6 @@ export const deletePost = (id) => dispatch => (
         }))
 	);
 
-
 export const ADD_POST = 'ADD_POST'
 export const addPost = (post) => dispatch => (
 	API.newPost(post)
@@ -103,6 +90,21 @@ export const addPost = (post) => dispatch => (
 		post
 	}))
 	)
+
+export const GET_A_POST = 'GET_A_POST'
+export const GET_COMMENTS = 'GET_COMMENTS'
+
+
+
+export const receiveOnePost = (post) => ({
+  type: GET_A_POST,
+  post
+})
+
+export const getOnePost = (id) => dispatch => (
+  API.fetchOnePost(id)
+  .then(post => dispatch(receiveOnePost(post)))
+)
 
 
     //

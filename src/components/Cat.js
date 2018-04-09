@@ -47,70 +47,61 @@ class Cat extends React.Component {
 		//	console.log(activeItem)
 		}
 		// {console.log(categoriesList)}
-		return (<div>
-			<header>
-				<h1 className="display-2">Readable 评论页面</h1>
-			</header>
-			<hr className="side"/>
-			<main role="main" className="container">
-				<div className="my-3 p-3 bg-white rounded box-shadow">
-
-					<div className="row border-bottom border-gray pb-2 mb-0">
-						<div className="col-sm-4">
-							<h6>Recent updates</h6>
+		return (
+			<div>
+				<header>
+					<h1 className="display-2">Readable 评论页面</h1>
+				</header>
+				<hr className="side"/>
+				<main role="main" className="container">
+					<div className="my-3 p-3 bg-white rounded box-shadow">
+						<div className="row border-bottom border-gray pb-2 mb-0">
+							<div className="col-sm-4">
+								<h6>Recent updates</h6>
+							</div>
+							<div className="col-sm-8 d-flex flex-row-reverse">
+								{
+									categoriesList.map((name) => (
+										<div className="p-2"
+											key={name}
+											onClick={this.handleActiveItem}
+											active={activeItem === name}
+											as={Link}
+										>
+											<Link
+												to={name === "all" ? "" : `/${name}`}
+												className="text-primary"
+											>
+												{name}
+											</Link>
+										</div>
+									))
+								}
+								{/* <Switch>
+									<Route exact path='/' component={Categories}/>
+									<Route exact path='/:category' component={Categories}/>
+								</Switch> */}
+							</div>
 						</div>
-						<div className="col-sm-8 d-flex flex-row-reverse">
-							{
-								categoriesList.map((name) => (
-
-                                    <div className="p-2"
-                                        key={name}
-                                        onClick={this.handleActiveItem}
-                                        active={activeItem === name}
-                                        as={Link}
-                                    >
-                                        <Link
-                                            to={name === "all" ? "" : `/${name}`}
-                                            className="text-primary"
-
-                                        >
-                                            {name}
-                                        </Link>
-                                    </div>
-                                ))
-							}
-
-						</div>
+						<Switch>
+							<Route path="/" component={Posts}/>
+							<Route path="/:category" component={Posts}/>
+							<Route path="/:category/:id" component={Post}/>
+						</Switch>
 					</div>
-					<Switch>
-						<Route path="/" component={Posts}/>
-						<Route path="/:category" component={Posts}/>
-					</Switch>
-				</div>
-				<div className="row d-flex flex-row-reverse">
-					<div className="dropdown mr-3">
-						<button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Recent Post
-						</button>
-						<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<a className="dropdown-item" href="#">Ordered By Vote</a>
-							<a className="dropdown-item" href="#">Ordered By Time</a>
-						</div>
+					<div className="row d-flex flex-row-reverse">
+						<Link to='/'>
+							<button type="button" id="new-post" className="btn btn-primary" onClick={this.openNewPostModal}>
+								Create New Post
+							</button>
+						</Link>
 					</div>
-
-					<Link to='/'>
-						<button type="button" id="new-post" className="btn btn-primary" onClick={this.openNewPostModal}>
-							Create New Post
-						</button>
-					</Link>
-
-				</div>
-			</main>
-			<Modal isOpen={createPostModal}  className='Modal'>
-				<NewPost modalClose={() => {this.closeNewPostModal()}}/>
-			</Modal>
-
-		</div>)
+				</main>
+				<Modal isOpen={createPostModal}  className='Modal'>
+					<NewPost modalClose={() => {this.closeNewPostModal()}}/>
+				</Modal>
+			</div>
+		)
 	}
 }
 
