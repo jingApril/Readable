@@ -10,12 +10,14 @@ class Posts extends React.Component {
 
 	componentDidMount() {
 		this.props.getPosts();
+		//const {category} = this.props.match.params;
+		// this.props.getPostsbyCategory(category);
 	}
 
-	// currentCategoryRoute() {
-	// 	const {category} = this.props.match.params;
-	// 	return category;
-	// }
+	currentCategoryRoute() {
+		const {category} = this.props.match.params;
+		return category;
+	}
 
 	onClickUpVote = (id) => {
 		this.props.upVote(id)
@@ -29,17 +31,28 @@ class Posts extends React.Component {
 		this.props.deletePost(id).then(() => { })
     }
 
+		// const PostList = ({ posts, filter }) => {
+		//
+		//     let allPosts = (filter === 'all') ? posts : posts.filter(post => post.category === filter)
+		//
+		//     const renderPostList = allPosts.map(post => <Post key={post.id} post={post} />)
+		//
+		//     return  PostList
+		// }
+
+
+
 
 	render() {
 
 
-		// const categoryRoute = this.currentCategoryRoute();
-		// let posts = Object.keys(this.props.posts).map((data) => (this.props.posts[data] || []))
+		const categoryRoute = this.currentCategoryRoute();
+		let posts = Object.keys(this.props.posts).map((data) => (this.props.posts[data] || []))
 		//console.log(posts);
-		// if (categoryRoute) {
-		// 	posts = posts.filter(post => post.category === categoryRoute);
-		// }
-		//
+		if (categoryRoute) {
+			posts = posts.filter(post => post.category === categoryRoute);
+		}
+
 		// if (this.props.sort === 'not_popular') {
 		// 	posts.sort(function(a, b) {
 		// 		return a.voteScore - b.voteScore
@@ -58,10 +71,10 @@ class Posts extends React.Component {
 		// 	});
 		// }
 		//
-		const {posts} = this.props
+		//const {posts} = this.props
 
 		return (
-
+          <div>
 			<div className="row">
 				{
 					posts.map((post) => (
@@ -83,11 +96,11 @@ class Posts extends React.Component {
 								<div className="col-sm-4 d-flex flex-row-reverse" id="title_item_right">
 
 
-									<i class="material-icons" onClick={() => this.onClickUpVote(post.id)}>thumb_up</i>
+									<i className="material-icons" onClick={() => this.onClickUpVote(post.id)}>thumb_up</i>
 									<div className="d-inline p-2 text-dark">
 										{post.voteScore}
 									</div>
-									<i class="material-icons" onClick={() => this.onClickDownVote(post.id)}>thumb_down</i>
+									<i className="material-icons" onClick={() => this.onClickDownVote(post.id)}>thumb_down</i>
 
 									<div className="d-inline p-2 text-dark delete" id="deletePost" data-toggle="modal"   data-target="#pop_delete"onClick={() => this.onClickDelete(post.id)}>
 										Delete
@@ -104,18 +117,19 @@ class Posts extends React.Component {
 						</div>
 					))
 				}
-				<div className="row d-flex flex-row-reverse">
-					<div className="dropdown mr-3">
-						<button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Recent Post
-						</button>
-						<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<a className="dropdown-item" href="#">Ordered By Vote</a>
-							<a className="dropdown-item" href="#">Ordered By Time</a>
-						</div>
+
+			</div>
+			<div className="row d-flex flex-row-reverse">
+				<div className="dropdown mr-3">
+					<button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Recent Post
+					</button>
+					<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a className="dropdown-item" href="#">Ordered By Vote</a>
+						<a className="dropdown-item" href="#">Ordered By Time</a>
 					</div>
 				</div>
-
+			</div>
 			</div>
 		)
 

@@ -11,7 +11,6 @@ import NewPost from './NewPost'
 class Cat extends React.Component {
 
 	state = {
-		activeItem: "all",
 		createPostModal: false
 	};
 
@@ -30,10 +29,6 @@ class Cat extends React.Component {
 		this.props.getAllCategories();
 	}
 
-	handleActiveItem = (e, {name}) => {
-		this.setState({activeItem: name});
-
-	};
 
 	render() {
 		const {activeItem, createPostModal} = this.state;
@@ -54,44 +49,41 @@ class Cat extends React.Component {
 				</header>
 				<hr className="side"/>
 				<main role="main" className="container">
-					<div className="my-3 p-3 bg-white rounded box-shadow">
-						<div className="row border-bottom border-gray pb-2 mb-0">
-							<div className="col-sm-4">
-								<h6>Recent updates</h6>
-							</div>
-							<div className="col-sm-8 d-flex flex-row-reverse">
-								{
-									categoriesList.map((name) => (
-										<div className="p-2"
-											key={name}
-											onClick={this.handleActiveItem}
-											active={activeItem === name}
-											as={Link}
+					<div className="row border-bottom border-gray pb-2 mb-0">
+
+						<div className="col-sm-8 d-flex flex-row-reverse">
+							{
+								categoriesList.map((name) => (
+									<div className="p-2"
+										key={name}
+
+
+										as={Link}
+									>
+										<Link
+											to={name === "all" ? "" : `/${name}`}
+											className="text-primary"
 										>
-											<Link
-												to={name === "all" ? "" : `/${name}`}
-												className="text-primary"
-											>
-												{name}
-											</Link>
-										</div>
-									))
-								}
-							</div>
+											{name}
+										</Link>
+									</div>
+								))
+							}
+							<Link to='/'>
+								<button type="button" id="new-post" className="btn btn-primary" onClick={this.openNewPostModal}>
+									Create New Post
+								</button>
+							</Link>
 						</div>
+					</div>
+					<div className="my-3 p-3 bg-white rounded box-shadow">
 						<Switch>
 							<Route exact path="/" component={Posts}/>
 							<Route exact path="/:category" component={Posts}/>
-							<Route exact path="/:category/:id" component={Post}/>
+							<Route path="/:category/:id" component={Post}/>
 						</Switch>
 					</div>
-					<div className="row d-flex flex-row-reverse">
-						<Link to='/'>
-							<button type="button" id="new-post" className="btn btn-primary" onClick={this.openNewPostModal}>
-								Create New Post
-							</button>
-						</Link>
-					</div>
+
 				</main>
 				<Modal isOpen={createPostModal}  className='Modal'>
 					<NewPost modalClose={() => {this.closeNewPostModal()}}/>
@@ -101,14 +93,7 @@ class Cat extends React.Component {
 	}
 }
 
-Cat.propTypes = {
-	categories: PropTypes.array.isRequired,
-	getAllCategories: PropTypes.func.isRequired
-};
 
-// const mapStateToProps = ({categories}) => ({
-//     categories: categories
-// })
 
 function mapStateToProps(categories) {
 	return categories

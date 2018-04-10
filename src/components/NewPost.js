@@ -33,7 +33,7 @@ class NewPost extends React.Component {
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handleCatChang = this.handleCatChange.bind(this);
     this.handlePostChange = this.handlePostChange.bind(this);
-    //this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     //this.resetPost = this.resetPost.bind(this);
 
   }
@@ -71,7 +71,7 @@ class NewPost extends React.Component {
       // 	category: this.state.category,
       // 	timestamp: Date.now()
       // });
-      const post = {
+      const newpost = {
         title: this.state.title,
         author: this.state.author,
         body: this.state.body,
@@ -80,8 +80,9 @@ class NewPost extends React.Component {
         category: this.state.category,
         timestamp: Date.now()
       }
+       console.log(newpost)
       //this.props.savePost(post)
-      this.props.savePost(post).then(() => this.setState({
+      this.props.savePost(newpost).then(() => this.setState({
         success: true,
         title: '',
         author: '',
@@ -89,7 +90,7 @@ class NewPost extends React.Component {
         body: '',
         invalid: false
       }))
-      console.log(post)
+      //console.log(post)
       //this.openModal();
 
     } else {
@@ -107,9 +108,7 @@ class NewPost extends React.Component {
       invalid: false
     });
   }
-
   render() {
-
     if (this.state.success) {
       return (<div>
         <div className="modal-dialog modal-dialog-centered" role="document">
@@ -166,8 +165,9 @@ class NewPost extends React.Component {
               </form>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={this.resetPost.bind(this)}>Cancel</button>
-              <button type="submit" className="btn btn-primary" onClick={this.handleSubmit.bind(this)}>Submit</button>
+              {/* <button type="button" className="btn btn-secondary" data-dismiss="modal" >Cancel</button> */}
+
+              <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
             </div>
           </div>
 
@@ -185,7 +185,7 @@ function mapStateToProps(categories) {
 function mapDispatchToProps(dispatch) {
   return {
     getAllCategories: () => dispatch(getAllCategories()),
-    savePost: (post) => dispatch(addPost(post))
+    savePost: (newpost) => dispatch(addPost(newpost))
   }
 }
 

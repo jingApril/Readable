@@ -1,53 +1,143 @@
-{/* <div class="row">
-	<div class="col-sm-12">
-		<h3 class="pb-2 mb-0 pt-3 text-primary">Comments</h3>
-	</div>
-</div>
-<div class="media text-muted pt-3 border-bottom border-gray">
-	<div class="row">
-		<div class="col-md-12">
-			<p class="media-body pb-3 mb-0 lh-125">
-				Just get rid of it. Give peopl it. Give pe it. Give pe it. Give pe it. Give pe it. Give pe it. Give pe it. Give pe it. Give pe it. Give pe it. Give pe it. Give pe it. Give pe it. Give pe it. Give pe it. Give pe it. Give pe it. Give pee back their lives as most are too dumb to do it themselves.
-			</p>
-		</div>
-		<div class="col-md-12 post_detail_bottom">
-			<div class="col-sm-8 float-left" id="title_item_left">
-				<div class="d-inline p-2 text-gray-dark">王王王王王王王</div>
-				|
-				<time datetime="2016-02-25T19:19:31.193Z">Feb 26, 2016</time>
-				|
-				<div class="d-inline p-2 text-gray-dark">28 条评论</div>
-				|
-				<div class="d-inline p-2 text-gray-dark">28 Vote</div>
-			</div>
-			<div class="col-sm-4 d-flex flex-row-reverse" id="title_item_right">
-				<div class="d-inline p-2 text-dark delete" data-toggle="modal" data-target="#pop_delete">
-					<a href="javascript:void(0);">Delete</a>
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import moment from 'moment'
+import {withRouter, Link} from 'react-router-dom'
+import {getComments,upVoteComment,downVoteComment,addComment,editComment,deleteComment} from '../actions'
+
+class Comment extends React.Component {
+
+	componentDidMount() {
+		const {id} = this.props.match.params;
+		this.props.getComments(id);
+	}
+
+	state = {
+  		author: '',
+  		body: '',
+  		commentId: '',
+  		invalid: false,
+  		success: false,
+  		deleted: false,
+  		edited: false,
+  		modalIsOpen: false
+  	}
+
+	onClickCommentEdit = (id) => {
+    		const comments = this.props.comments;
+    		let comment = comments.filter(comment => comment.id === id);
+    		this.openModal();
+    		this.setState({
+    			author: comment[0].author,
+    			body: comment[0].body,
+    			commentId: id
+    		})
+    	}
+
+		onAuthorChange(author){
+	 		this.setState({author: author.target.value})
+	 	}
+
+	 	onCommentChange(text){
+	 		this.setState({body: text.target.value})
+
+	 	}
+
+	 	onSaveComment(id){
+	 		if(this.state.author && this.state.body){
+	 			const commentEdit = {
+	 				id,
+	 				parentId: this.props.match.params.id,
+	  				timestamp: Date.now(),
+	  				author: this.state.author,
+	  				body: this.state.body
+	  			}
+	  			this.props.editCurrentComment(id, commentEdit)
+	  			.then(() => this.setState({
+		          success: true,
+		          invalid: false
+		        }))
+		        this.closeModal();
+	  		} else {
+		      this.setState({
+		        invalid: true,
+		        success: false
+		      })
+		   	}
+	 	}
+
+	 	onClickDeleteCom(id){
+	 		deleteComment(id);
+	 		//let comments = Object.keys(this.props.comments).map((data)=>(this.props.comments[data] || []));
+	 		this.props.deleteComment(id);
+
+	 	}
+
+
+	render() {
+
+		let comments = Object.keys(this.props.comments).map((data)=>(this.props.comments[data] || []));
+		let commentsNum = comments.length;
+		return (
+			<div>
+
+
+
+				<div className="row">
+				<div className="col-sm-12">
+					<h3 className="pb-2 mb-0 pt-3 text-primary">Comments</h3>
 				</div>
-				<div class="d-inline p-2 text-dark">
-					<a href="javascript:;">Edit</a>
+			   </div>
+			   <div className="media text-muted pt-3 border-bottom border-gray">
+{comments.map((comment) =>
+
+				<div className="row" key={comment.id}>
+					<div className="col-md-12">
+						<p className="media-body pb-3 mb-0 lh-125">
+							{comment.body}
+						</p>
+					</div>
+					<div className="col-md-12 post_detail_bottom">
+						<div className="col-sm-8 float-left" id="title_item_left">
+							<div className="d-inline p-2 text-gray-dark">{comment.author}</div>
+							|
+							<time datetime="2016-02-25T19:19:31.193Z">	{moment(comment.timestamp).format("MMM-DD-YYYY hh:mma")}</time>
+							|
+							<div className="d-inline p-2 text-gray-dark">{comment.voteScore}</div>
+						</div>
+						<div className="col-sm-4 d-flex flex-row-reverse" id="title_item_right">
+							<div className="d-inline p-2 text-dark delete" data-toggle="modal" data-target="#pop_delete">
+								<a href="javascript:void(0);">Delete</a>
+							</div>
+							<div className="d-inline p-2 text-dark">
+								<a href="javascript:;">Edit</a>
+							</div>
+						</div>
+					</div>
 				</div>
+
+	)}
+			   </div>
+
 			</div>
-		</div>
-	</div>
-</div>
-<h3 class="pb-2 mb-1 pt-4 text-primary">Add your comment</h3>
-<div id="readerCommentsCommand" class="post-comment-form clearfix">
-	<div class="bogr1 comment-form" id="ext-gen8">
-		<input name="ieutf" type="hidden" value="☠"/>
-		<input type="hidden" id="formAssetId" value="5516983"/>
-		<a name="addComment"></a>
-		<div id="readerCommentsCommand-message-field" class="textarea-holder field cleared">
-			<span class="errors"></span>
-			<textarea id="message" name="message" class="maxlength js-validate js-countdown js-defaultvalue js-expand textarea-input" rows="5" cols="40" title="Enter your comment">Enter your comment</textarea>
-		</div>
-		<div>
-			<label for="auther">Auther:</label>
-			<input id="auther" name="auther" type="text"/>
-		</div>
-		<div class="buttons-holder" id="ext-gen9">
-			<button type="submit" class="btn btn-submit btn-disabled" id="ext-gen10" disabled="">Submit Comment</button>
-			<button type="reset" class="btn btn-clear" id="ext-gen11">Clear</button>
-		</div>
-	</div>
-</div> */}
+
+		)
+	}
+}
+
+function mapStateToProps({comments}){
+	return {
+		comments
+	}
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+    	getComments: (id) => dispatch(getComments(id)),
+        upVote: (id) => dispatch(upVoteComment(id)),
+        downVote: (id) => dispatch(downVoteComment(id)),
+        editCurrentComment: (id, comment) => dispatch(editComment(id, comment)),
+        deleteComment: (id) => dispatch(deleteComment(id))
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Comment));

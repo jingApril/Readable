@@ -184,3 +184,45 @@ state.map(post => ( post.id === action.payload.id ? action.payload : post
 ))
 
 this will update the post.
+
+const initialState = {
+    fetching: false,
+    fetched: false,
+    comments: [],
+    error: null,
+}
+
+export default function commentsReducer (state = initialState, action) {
+
+    switch (action.type) {
+        case FETCH_COMMENTS_START :
+            return {
+                ...state,
+                fetching: true
+            }
+        case FETCH_COMMENTS :
+            return {
+                ...state,
+                fetching: false,
+                fetched: true,
+                comments: action.payload //.filter(comment => !comment.deleted)
+            }
+        case FETCH_COMMENTS_ERROR :
+            return {
+                ...state,
+                fetching: false,
+                fetched: false,
+                error: action.payload
+            }
+        default :
+            return state;
+    }
+
+}
+
+.then((data) =>  {dispatch(addPostToStore( newPost ))
+	and I get this object
+
+	 {"voteScore":1,"deleted":false,"commentCount":0}
+
+	 =/
