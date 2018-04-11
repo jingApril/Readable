@@ -10,6 +10,7 @@ export const receiveCategories = categories => ({
   type: GET_CATEGORIES,
   categories
 })
+
 export const getAllCategories = () => dispatch => (
   API.fetchAllCategories()
   .then(categories => dispatch(receiveCategories(categories)))
@@ -80,10 +81,10 @@ export const deletePost = (id) => dispatch => (
 export const ADD_POST = 'ADD_POST'
 export const addPost = (newpost) => dispatch => (
 	API.newPost(newpost)
-	.then(newpost => dispatch({
-		type: ADD_POST,
-		newpost
-	}))
+  	.then(newpost => dispatch({
+  		type: ADD_POST,
+  		newpost
+  	}))
 	)
 
 export const GET_A_POST = 'GET_A_POST'
@@ -108,13 +109,18 @@ export const ADD_A_COMMENT = 'ADD_A_COMMENT'
 export const EDIT_A_COMMENT = 'EDIT_A_COMMENT'
 export const DELETE_A_COMMENT = 'DELETE_A_COMMENT'
 
+
+
+export const receiveComments = (comments) => ({
+  type: GET_COMMENTS,
+  comments
+})
+
 export const getComments = (id) => dispatch => (
-	API.fetchComments(id)
-	.then(comments => dispatch({
-		type: GET_COMMENTS,
-		comments
-	}))
-);
+  API.fetchComments(id)
+  .then(comments => dispatch(receiveComments(comments)))
+)
+
 
 export const upVoteComment = (id) => dispatch => (
     API.voteComment(id, "upVote")
@@ -131,14 +137,13 @@ export const downVoteComment = (id) => dispatch => (
         }))
 );
 
-export const addComment = (comment) => dispatch => (
-    API.addComment(comment)
-    .then(comment => dispatch({
+export const addComment = (newcomment) => dispatch => (
+    API.addComment(newcomment)
+    .then(newcomment => dispatch({
         type: ADD_A_COMMENT,
-        comment
+        newcomment
     }))
     );
-
 
 export const editComment = (id, edited) => dispatch => (
     API.editComment(id, edited)
@@ -148,7 +153,6 @@ export const editComment = (id, edited) => dispatch => (
         comment: edited
     }))
     );
-
 
 export const deleteComment = (id) => dispatch => (
     API.deleteComment(id)

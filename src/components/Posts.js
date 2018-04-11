@@ -10,13 +10,15 @@ class Posts extends React.Component {
 
 	componentDidMount() {
 		this.props.getPosts();
-		//const {category} = this.props.match.params;
+		const {category} = this.props.match.params;
 		// this.props.getPostsbyCategory(category);
+		// console.log(category);
 	}
 
 	currentCategoryRoute() {
 		const {category} = this.props.match.params;
 		return category;
+		//console.log(category);
 	}
 
 	onClickUpVote = (id) => {
@@ -45,6 +47,7 @@ class Posts extends React.Component {
 
 	render() {
 
+console.log(this.props.posts)
 
 		const categoryRoute = this.currentCategoryRoute();
 		let posts = Object.keys(this.props.posts).map((data) => (this.props.posts[data] || []))

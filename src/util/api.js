@@ -36,7 +36,7 @@ export const fetchPostsByCategory = (category) =>
         .then(data => data)
 
 export const votePost = (id, option) =>
-    fetch(`${api}/posts/${id}`, { method: 'POST', body: JSON.stringify({  option}),headers})
+    fetch(`${api}/posts/${id}`, { method: 'POST', body: JSON.stringify({option}),headers})
         .then(res => res.json())
 
 
@@ -69,39 +69,41 @@ export const newPost = (newPost) =>
 
 export const fetchOnePost = (id) =>
 	 fetch(`${api}/posts/${id}`, { method: 'GET', headers})
-	   .then(res => res.json())
-       .then(data => data)
+      .then(res => res.json())
+      //.then(data => data.comments)
 
+// comments
 
-export const fetchComments = (id) => {
+export const fetchComments = (id) =>
   fetch(`${api}/posts/${id}/comments`, { method: 'GET',  headers})
+      .then(res => res.json())
+      .then(data => data)
+
+
+export const addComment = (newcomment) =>
+  fetch(`${api}/comments`, { method: 'POST', body: JSON.stringify(newcomment), headers})
      .then(res => res.json())
-}
 
-export const voteComment = (id) => {
-  fetch(`${api}/posts/${id}/comments`, { method: 'GET',  headers})
+
+export const getComment = (id) =>
+  fetch(`${api}/comments/${id}`, { method: 'GET',  headers})
+     .then(res => res.json())
+     .then(data => data)
+
+
+export const voteComment = (id, option) =>
+  fetch(`${api}/comments/${id}`, { method: 'POST', body: JSON.stringify({option}),  headers})
+     .then(res => res.json())
+
+
+
+export const editComment = (id) => {
+  fetch(`${api}/comments/${id}`, { method: 'POST',  headers})
      .then(res => res.json())
      .then(data => data)
 
 }
 
-export const addComment = (comment) => {
-  fetch(`${api}/posts/${id}/comments`, { method: 'GET',  headers})
+export const deleteComment = (id) =>
+  fetch(`${api}/comments/${id}`, { method: 'DELETE',  headers})
      .then(res => res.json())
-     .then(data => data)
-
-}
-
-export const editComment = (comment) => {
-  fetch(`${api}/posts/${id}/comments`, { method: 'GET',  headers})
-     .then(res => res.json())
-     .then(data => data)
-
-}
-
-export const deleteComment = (comment) => {
-  fetch(`${api}/posts/${id}/comments`, { method: 'GET',  headers})
-     .then(res => res.json())
-     .then(data => data)
-
-}

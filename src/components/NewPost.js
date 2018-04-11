@@ -114,13 +114,14 @@ class NewPost extends React.Component {
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLongTitle">add post is successfully</h5>
+              <h5 className="modal-title" id="exampleModalLongTitle">New Post</h5>
               <button type="button" className="close" onClick={this.props.modalClose}>
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div className="modal-body" id="post-form">
               great!
+              <p>Your Post has been successfully added</p>
             </div>
             <div className="modal-footer">
               <button type="submit" className="btn btn-primary" onClick={this.props.modalClose}>submit is success</button>

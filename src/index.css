@@ -110,9 +110,9 @@ time {
      transition: opacity .15s linear;
 
   }
-
-
+.delete:hover{cursor: pointer;}
+.comment_body, .comment_detail{ width:100%;}
  .Overlay {
 
     background-color: #000;
-  } 
+  }

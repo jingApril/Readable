@@ -56,8 +56,6 @@ class Cat extends React.Component {
 								categoriesList.map((name) => (
 									<div className="p-2"
 										key={name}
-
-
 										as={Link}
 									>
 										<Link
