@@ -35,7 +35,13 @@ export default function posts(state =[], action) {
 			 //   newpost: action.newpost
 			 //  }
 
-		case 'DELETE_A_POST':
+			 case 'EDIT_A_POST' :
+
+				return state.map(post => {
+		          return post.id === action.post.id ? action.post : post;
+		        });
+
+	case 'DELETE_A_POST':
 			return state.filter(post => post.id !== action.id);
 
 		default:

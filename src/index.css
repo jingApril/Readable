@@ -31,10 +31,7 @@ header a{
 header a:hover{
 text-decoration: none
 }
-label {
-    font-size: larger;
-    color: blue;
-}
+
 .btn{float:right; margin-right: 1%;}
 
 hr.side { border: solid #000000;
@@ -110,7 +107,8 @@ time {
      transition: opacity .15s linear;
 
   }
-.delete:hover{cursor: pointer;}
+.delete:hover,.edit:hover{cursor: pointer;}
+
 .comment_body, .comment_detail{ width:100%;}
  .Overlay {
 

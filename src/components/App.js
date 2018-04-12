@@ -9,7 +9,7 @@ import Loading from 'react-loading'
 
 import Cat from './Cat'
 import Posts from './Posts'
-import NewPost from './NewPost'
+import AddPost from './AddPost'
 import Post from './Post'
 
 class App extends React.Component {
