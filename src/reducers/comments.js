@@ -34,10 +34,6 @@ export default function comments(state = {}, action) {
 		case 'DELETE_A_COMMENT':
 			return state.filter(comment => comment.id !== action.comment.id);
 
-			// return  { comment: state.filter(comment =>
-			//         comment.id !== action.comment.id
-			//  )}
-
 		default:
 			return state;
 	}

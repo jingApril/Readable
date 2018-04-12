@@ -1,6 +1,6 @@
 import {CHANGE_SORT} from '../actions'
 
-const sort = (state = { sort: 'popular' }, action) => {
+const sort = (state = { sort: 'latest' }, action) => {
   switch(action.type) {
     case 'CHANGE_SORT':
       const newValue = action.value
@@ -12,5 +12,4 @@ const sort = (state = { sort: 'popular' }, action) => {
       return state
   }
 }
-
 export default sort

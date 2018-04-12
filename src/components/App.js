@@ -16,8 +16,8 @@ class App extends React.Component {
 
   render() {
     return (<div>
-        <Cat/>
-      </div>)
+      <Cat/>
+    </div>)
   }
 }
 
