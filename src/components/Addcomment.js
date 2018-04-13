@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import moment from 'moment'
 import uuidv1 from 'uuid/v1'
@@ -62,33 +62,34 @@ class AddComment extends React.Component {
   }
 
   render() {
-    return (<div className="row">
+    return (
+        <div className="row">
 
-      <div className="col-12">
-        <h3 className="pb-2 mb-1 pt-4 text-primary">Add your comment</h3>
-      </div>
-      <form className="col-12 px-5">
-        <div className="form-group">
-          <label className="text-gray-dark">Example textarea:</label>
-          <textarea className="form-control" title="comment-body" id="comment-body" rows="5" cols="40" value={this.state.body} onChange={(e) => this.onChangeComment(e)}>Enter your comment</textarea>
-        </div>
-        <div className="form-group">
-          <label className="text-gray-dark">Auther:</label>
-          <input type="text" className="form-control" id="auther" name="auther" value={this.state.author} onChange={(e) => this.onChangeAuthor(e)}/>
-        </div>
-        <button type="submit" className="btn btn-primary" onClick={this.onChangeAddComment}>Submit</button>
-      </form>
-
-      <Modal isOpen={this.state.modalIsOpen} closeTimeoutMS={4} onRequestClose={this.closeModal} className='Modal' contentLabel="Modal">
-        <div className="modal-dialog modal-dialog-centered" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLongTitle">New Comment</h5>
-              <button type="button" className="close" onClick={this.closeModal}>
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div className="col-12">
+                <h3 className="pb-2 mb-1 pt-4 text-primary">Add your comment</h3>
             </div>
-            <div className="modal-body" id="post-form">
+            <form className="col-12 px-5">
+                <div className="form-group">
+                    <label className="text-gray-dark">Example textarea:</label>
+                    <textarea className="form-control" title="comment-body" id="comment-body" rows="5" cols="40" value={this.state.body} onChange={(e) => this.onChangeComment(e)}>Enter your comment</textarea>
+                </div>
+                <div className="form-group">
+                    <label className="text-gray-dark">Auther:</label>
+                    <input type="text" className="form-control" id="auther" name="auther" value={this.state.author} onChange={(e) => this.onChangeAuthor(e)}/>
+                </div>
+                <button type="submit" className="btn btn-primary mb-3" onClick={this.onChangeAddComment}>Submit</button>
+            </form>
+
+            <Modal isOpen={this.state.modalIsOpen} closeTimeoutMS={4} onRequestClose={this.closeModal} className='Modal' contentLabel="Modal">
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLongTitle">New Comment</h5>
+                            <button type="button" className="close" onClick={this.closeModal}>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body" id="post-form">
               <p>Your comment has been successfully added</p>
             </div>
             <div className="modal-footer">

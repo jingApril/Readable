@@ -9,9 +9,6 @@ const post = (state = {}, action) => {
 			//
 			// }
 			return action.post
-
-			return action.post
-
 		case 'UPVOTE_A_POST':
 		case 'DOWNVOTE_A_POST':
 			return {

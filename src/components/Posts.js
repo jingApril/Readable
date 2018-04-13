@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
@@ -79,82 +79,85 @@ if (this.props.sort.sort === 'popularity') {
 
 
     return (
-<div className="my-3 p-3 bg-white rounded box-shadow clearfix">
+<div className="row p-3 bg-white rounded box-shadow clearfix">
 
-      <div className="row">
+    <div className="row">
         {
-          posts.map((post) => (<div className="title_item text-muted pt-3 border-bottom border-gray" key={post.id}>
-            <Link to={`/${post.category}/${post.id}`}>
-              <h3>{post.title}</h3>
-            </Link>
-            <div className="row">
-              <div className="col-sm-8 float-left" id="title_item_left">
-                <div className="d-inline p-2 text-dark">{post.author}</div>
-                <time>{moment(post.timestamp).format("MMM-DD-YYYY hh:mma")}
-                </time>
-                <div className="d-inline p-2 text-dark">{post.commentCount}
-                  条评论
+            posts.map((post) => (<div className="title_item text-muted pt-3 border-bottom border-gray" key={post.id}>
+                <div className="col-12">
+                    <Link to={`/${post.category}/${post.id}`}>
+                        <h3 className="mx-3">{post.title}</h3>
+                    </Link>
                 </div>
+                <div className="col-12">
+                    <div className="col-sm-8 float-left" id="title_item_left">
+                        <div className="d-inline p-2 text-dark">{post.author}</div>
+                        <time>{moment(post.timestamp).format("MMM-DD-YYYY hh:mma")}
+                        </time>
+                        <div className="d-inline p-2 text-dark">{post.commentCount}
+                            条评论
+                        </div>
 
-              </div>
+                    </div>
 
-              <div className="col-sm-4 d-flex flex-row-reverse" id="title_item_right">
+                    <div className="col-sm-4 d-flex flex-row-reverse" id="title_item_right">
 
-                <i className="material-icons" onClick={() => this.onClickUpVote(post.id)}>thumb_up</i>
-                <div className="d-inline p-2 text-dark">
-                  {post.voteScore}
+                        <i className="material-icons" onClick={() =>
+                            this.onClickUpVote(post.id)}>thumb_up</i>
+                        <div className="d-inline p-2 text-dark">
+                            {post.voteScore}
+                        </div>
+                        <i className="material-icons" onClick={() => this.onClickDownVote(post.id)}>thumb_down</i>
+
+                        <div className="d-inline p-2 edit" data-toggle="modal" data-target="#pop_delete">
+                            <Link to={`/edit/${post.id}`}>
+                                Edit
+                            </Link>
+                        </div>
+
+                        <div className="d-inline p-2 text-primary delete" id="deletePost" data-toggle="modal" data-target="#pop_delete" onClick={() => this.onClickDelete(post.id)}>
+                            Delete
+                        </div>
+
+                        <div className="d-inline p-2">
+                            <Link to={`/${post.category}`}>
+                                <div className="category">{post.category}</div>
+                            </Link>
+                        </div>
+
+                    </div>
+
                 </div>
-                <i className="material-icons" onClick={() => this.onClickDownVote(post.id)}>thumb_down</i>
-
-                <div className="d-inline p-2 text-dark delete" id="deletePost" data-toggle="modal" data-target="#pop_delete">
-                  <Link to={`/edit/${post.id}`}>
-                    Edit
-                  </Link>
-                </div>
-
-                <div className="d-inline p-2 text-dark delete" id="deletePost" data-toggle="modal" data-target="#pop_delete" onClick={() => this.onClickDelete(post.id)}>
-                  Delete
-                </div>
-
-                <div className="d-inline p-2 text-dark">
-                  <Link to={`/${post.category}`}>
-                    <div className="category">{post.category}</div>
-                  </Link>
-                </div>
-
-              </div>
-
-            </div>
-          </div>))
+            </div>))
         }
 
-      </div>
-      <div className="row d-flex flex-row-reverse">
+    </div>
+    <div className="ml-auto mt-3">
         <div className="dropdown mr-3">
-          {/* <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-            Recent Post
-          </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-            <option className="dropdown-item" value="vote">Ordered By Vote</option>
-            <option className="dropdown-item" value="time">Ordered By Time</option>
-          </div> */}
+            {/* <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                Recent Post
+                </button>
+                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                <option className="dropdown-item" value="vote">Ordered By Vote</option>
+                <option className="dropdown-item" value="time">Ordered By Time</option>
+            </div> */}
 
-          {/* <select lassName="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" onChange={this.onChangeSort}>
-              <option className="dropdown-item" value="vote">Ordered By Vote</option>
-    					<option className="dropdown-item" value="time">Ordered By Time</option>
+            {/* <select lassName="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" onChange={this.onChangeSort}>
+                <option className="dropdown-item" value="vote">Ordered By Vote</option>
+                <option className="dropdown-item" value="time">Ordered By Time</option>
 
-            </div>
+                </div>
 
-				</select> */}
+            </select> */}
 
-    <select  className="form-control" name="sort" onChange={this.onChangeSort}>
-      <option value="latest">Ordered By Time</option>
-      <option  value="popularity">Ordered By Vote</option>
-    </select>
+            <select  className="form-control" name="sort" onChange={this.onChangeSort}>
+                <option value="latest">Ordered By Time</option>
+                <option  value="popularity">Ordered By Vote</option>
+            </select>
         </div>
-      </div>
-    </div>)
+    </div>
+</div>)
 
   }
 

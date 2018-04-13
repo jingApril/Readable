@@ -110,7 +110,5 @@ time {
 .delete:hover,.edit:hover{cursor: pointer;}
 
 .comment_body, .comment_detail{ width:100%;}
- .Overlay {
-
-    background-color: #000;
-  }
+.Overlay {background-color: #000;}
+.comment-text p:before{content:"\003e"; margin-right:0.45rem}
