@@ -16,7 +16,7 @@ class Post extends React.Component {
 		const {post} = this.props;
 
 		return (<div className="row bg-white rounded box-shadow clearfix">
-			<div className="ml-auto mt-2">
+			<div className="col-12 ml-auto mt-2">
 				<Link to='/'>
 					<button type="button" id="new-post" className="btn btn-primary">
 						go back

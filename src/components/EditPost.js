@@ -7,8 +7,7 @@ import {getAllCategories, getOnePost, editPost} from '../actions'
 class EditPost extends React.Component {
 
     state = {
-		id: '',
-		title: this.props.post.title,
+		title: '',
 		author: '',
 		body: '',
 		category: '',
@@ -20,17 +19,43 @@ class EditPost extends React.Component {
 
 	componentDidMount() {
 		//this.props.getAllCategories();
-		const {id} = this.props.match.params;
-		this.props.getOnePost(id);
+
+         const {id} = this.props.match.params;
+         this.props.getOnePost(id);
+        //
+		// const {id} = this.props.match.params;
+		// this.props.getOnePost(id);
+
+
+            const post = this.props.post;
+
         this.setState({
-            id: this.props.post.id,
-            title: this.props.post.title,
-            author: this.props.post.author,
-            category: this.props.post.category,
-            body: this.props.post.body
+            id: post.id,
+            title:  post.title,
+            author:  post.author,
+            category:  post.category,
+            body:  post.body
         });
+        console.log(post);
+        // console.log(this.state);
     }
 
+    componentWillUnmount() {
+        this.setState({
+            id: '',
+            title:  '',
+            author: '',
+            category: '',
+            body:  '',
+            invalid: false,
+            success: false,
+            edited: false,
+            modalIsOpen: false
+
+
+
+        });
+}
 
 	onTitleChange(title) {
 		this.setState({
@@ -56,8 +81,13 @@ class EditPost extends React.Component {
         })
     }
 
+    tobackClick = () => {
+   		this.props.history.push("/");
+   	}
 	onPostClick(e) {
 		e.preventDefault();
+        console.log(this.state.id);
+        console.log(this.props);
 		if (this.state.title && this.state.category && this.state.author && this.state.body) {
 			this.props.editPost(this.state.id, {
 				title: this.state.title,
@@ -90,7 +120,8 @@ class EditPost extends React.Component {
 
 	render() {
 
-        {console.log(this.props.post);}
+        //console.log(this.props.post);
+
 		const categories = this.props.categories || [];
 		const listOpt = categories.map(cat => <option value={cat.name} key={cat.path}>{cat.name}</option>)
 		return (
@@ -117,10 +148,6 @@ class EditPost extends React.Component {
                     <div className="form-group">
                         <label>Category</label>
                         <select className="form-control" id="category" value={this.state.category} onChange={(e) => this.onCategoryChange(e)}>
-                            {/* <option>react</option>
-                                <option>redux</option>
-                                <option>udacity</option> */
-                            }
                             {listOpt}
                         </select>
                     </div>
@@ -130,6 +157,7 @@ class EditPost extends React.Component {
                             value={this.state.body} onChange={(e) => this.onBodyChange(e)}>
                         </textarea>
                     </div>
+                    <button type="button" className="btn btn-primary" onClick={this.tobackClick}>cancle</button>
                     <button type="submit" className="btn btn-primary" onClick={this.onPostClick.bind(this)}>Submit</button>
                 </form>
 
@@ -145,6 +173,7 @@ class EditPost extends React.Component {
                             <div className="modal-body" id="post-form">
                                 <p>Your post has been successfully modified</p>
                             </div>
+
                             <div className="modal-footer">
                                 <button type="submit" className="btn btn-primary" onClick={this.tobackClick}>submit is success</button>
                             </div>

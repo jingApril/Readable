@@ -29,6 +29,7 @@ class AddPost extends React.Component {
 	closeModal = () => {
 		this.setState({modalIsOpen: false});
 	}
+	
 	tobackClick = () => {
 		this.props.history.push("/");
 	}
