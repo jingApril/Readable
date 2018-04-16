@@ -21,15 +21,3 @@ export default function configureStore(preloadedState) {
 
   )
 }
-
-
-// export default function configureStore(preloadedState) {
-//   return createStore(
-//     rootReducer,
-//     preloadedState,
-//     applyMiddleware(
-//       thunkMiddleware,
-//       loggerMiddleware
-//   )
-//   )
-// }

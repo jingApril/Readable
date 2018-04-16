@@ -1,4 +1,4 @@
-import {CHANGE_SORT} from '../actions'
+import { CHANGE_SORT } from '../actions/actionTypes';
 
 const sort = (state = { sort: 'latest' }, action) => {
   switch(action.type) {

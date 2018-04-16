@@ -19,8 +19,14 @@ import {
 class Posts extends React.Component {
 
   componentDidMount() {
+
+      // const {id} = this.props.match.params;
+      // this.props.getOnePost(id);
+
     this.props.getPosts();
     const {category} = this.props.match.params;
+
+
     // this.props.getPostsbyCategory(category);
     // console.log(category);
   }
@@ -134,22 +140,6 @@ if (this.props.sort.sort === 'popularity') {
     </div>
     <div className="ml-auto mt-3">
         <div className="dropdown mr-3">
-            {/* <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                Recent Post
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-                <option className="dropdown-item" value="vote">Ordered By Vote</option>
-                <option className="dropdown-item" value="time">Ordered By Time</option>
-            </div> */}
-
-            {/* <select lassName="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" onChange={this.onChangeSort}>
-                <option className="dropdown-item" value="vote">Ordered By Vote</option>
-                <option className="dropdown-item" value="time">Ordered By Time</option>
-
-                </div>
-
-            </select> */}
 
             <select  className="form-control" name="sort" onChange={this.onChangeSort}>
                 <option value="latest">Ordered By Time</option>

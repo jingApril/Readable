@@ -52,15 +52,6 @@ hr.side { border: solid #000000;
     cursor: pointer;
 }
 
-
-.icon-upvote-outline:before {
-   /*  content: "\2018"; */
-    content: url(ic_thumb_up_black_24dp_1x.png);
-}
-.icon-upvote-fill:before {
-    content: "\e001"
-}
-
 .material-icons:hover{cursor: pointer;}
 #deletePost:hover{cursor: pointer;}
 #title_item_left{ padding-top: 10px; }
