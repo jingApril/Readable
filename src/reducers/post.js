@@ -1,24 +1,24 @@
 import {
-  GET_A_POST,
-  UPVOTE_A_POST,
-  DOWNVOTE_A_POST
+  GET_A_POST,UPVOTE_A_POST,DOWNVOTE_A_POST
 } from "../actions/actionTypes";
 
 const post = (state = {}, action) => {
   switch (action.type) {
     case "GET_A_POST":
-      // 	return {
+
+    //case GET_ONE_POST:
+		// 	return {
       //   ...state,
-      //   post: action.post
-      //
+      //   post: action.payload
       // }
-      return action.post;
-    case "UPVOTE_A_POST":
-    case "DOWNVOTE_A_POST":
-      return {
-        ...state,
-        post: action.post
-      };
+       return { ...action.payload };
+
+       // case "UPVOTE_A_POST":
+       // case "DOWNVOTE_A_POST":
+   		// return {
+   		// 	...state,
+       //             post: action.payload
+       //         };
     default:
       return state;
   }

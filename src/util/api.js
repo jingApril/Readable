@@ -13,15 +13,6 @@ const headers = {
   Authorization: token
 };
 
-// export const fetchPosts = () => {
-//     fetch(`${api}/posts`, { method: 'GET', headers })
-//         .then(res =>res.json())
-//         .then((data) => {
-//             console.log('data',data);
-//             return data
-//         })
-// }
-
 export const fetchAllCategories = () =>
   fetch(`${api}/categories`, {
     method: "GET",
@@ -51,7 +42,9 @@ export const votePost = (id, option) =>
     method: "POST",
     body: JSON.stringify({ option }),
     headers
-  }).then(res => res.json());
+  })
+    .then(res => res.json())
+    .then(data => data);
 
 export const newPost = newPost =>
   fetch(`${api}/posts`, {
@@ -86,7 +79,7 @@ export const fetchOnePost = id =>
   })
     .then(res => res.json())
     .then(data => data);
-//.then(data => data.comments)
+
 
 // comments
 export const fetchComments = id =>
@@ -110,7 +103,7 @@ export const getComment = id =>
     headers
   })
     .then(res => res.json())
-    .then(data => data);
+
 
 export const voteComment = (id, option) =>
   fetch(`${api}/comments/${id}`, {

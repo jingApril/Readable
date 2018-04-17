@@ -40,58 +40,42 @@ export const getPosts = () => dispatch =>
 export const getPostsbyCategory = category => dispatch =>
   API.fetchPostsByCategory(category).then(posts => {
     dispatch({
-        type: GET_POSTS_BYCAT,
-        payload: posts });
+      type: GET_POSTS_BYCAT,
+      payload: posts
+    });
   });
 
 // post
-// export const receiveOnePost = post => ({
-//   type: GET_A_POST,
-//   payload: post
-// });
 
-// export const getOnePost = (id) => dispatch =>
-//   API.fetchOnePost(id).then(post =>  {
-//       dispatch({ type: GET_A_POST, payload: post });
-// });
-//
-//
-// export const receiveOnePost = (post) => ({type: GET_A_POST, post})
-
-export const getOnePost = (id) => dispatch => (API.fetchOnePost(id).then(post => dispatch(
-{type: GET_A_POST, post})))
-
-
+export const getOnePost = id => dispatch =>
+  API.fetchOnePost(id).then(post => {
+    dispatch({ type: GET_A_POST, payload: post });
+  });
 
 export const editPost = (id, post) => dispatch =>
-    API.editPost(id, post).then(post => {
-      dispatch({ type: EDIT_A_POST, payload: post });
-    });
-
-
+  API.editPost(id, post).then(post => {
+    dispatch({ type: EDIT_A_POST, payload: post });
+  });
 
 export const upVotePost = id => dispatch =>
   API.votePost(id, "upVote").then(post =>
-    dispatch({ type: UPVOTE_A_POST, payload: post })
+    dispatch({ type: UPVOTE_A_POST,  payload: post })
   );
+
+
+
 
 export const downVotePost = id => dispatch =>
   API.votePost(id, "downVote").then(post =>
-    dispatch({ type: DOWNVOTE_A_POST, payload: post })
+    dispatch({ type: DOWNVOTE_A_POST,  payload: post })
   );
 
-
-  export const addPost = post => dispatch =>
-    API.newPost(post).then(post =>
-        dispatch({ type: ADD_POST, payload: post })
-    );
-
-
-
+export const addPost = post => dispatch =>
+  API.newPost(post).then(post => dispatch({ type: ADD_POST, payload: post }));
 
 export const deletePost = id => dispatch =>
-  API.deletePost(id).then((post) => {
-     dispatch({ type: DELETE_A_POST, payload: post });
+  API.deletePost(id).then(post => {
+    dispatch({ type: DELETE_A_POST, payload: post });
   });
 
 // comment
