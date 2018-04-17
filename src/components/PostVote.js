@@ -3,6 +3,7 @@ import { Link, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import moment from "moment";
 import {
+getPosts,
   getOnePost,
   upVotePost,
   downVotePost,
@@ -15,9 +16,10 @@ class PostVote extends React.Component {
   };
 
   componentDidMount() {
+this.props.getPosts();
     const { id } = this.props.match.params;
     this.props.getOnePost(id);
-    console.log(this.props);
+    //console.log(this.props);
   }
 
   onClickUpVote = id => {
@@ -38,7 +40,7 @@ class PostVote extends React.Component {
 
   render() {
     {
-      console.log(this.props.post);
+    //  console.log(this.props.post.voteScore);
     }
     let post = this.props.post || [];
     if (this.state.deleted) {
@@ -89,12 +91,31 @@ class PostVote extends React.Component {
   }
 }
 
-function mapStateToProps(post) {
-  return post;
+function mapStateToProps({posts,post}) {
+  return {posts,post};
 }
+
+
+// function mapStateToProps ({ food, calendar }) {
+//   const dayOrder = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+//
+//   return {
+//     calendar: dayOrder.map((day) => ({
+//       day,
+//       meals: Object.keys(calendar[day]).reduce((meals, meal) => {
+//         meals[meal] = calendar[day][meal]
+//           ? food[calendar[day][meal]]
+//           : null
+//
+//         return meals
+//       }, {})
+//     })),
+//   }
+// }
 
 function mapDispatchToProps(dispatch) {
   return {
+    getPosts: () => dispatch(getPosts()),
     getOnePost: id => dispatch(getOnePost(id)),
     upVote: id => dispatch(upVotePost(id)),
     downVote: id => dispatch(downVotePost(id)),
@@ -102,6 +123,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PostVote)
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostVote));

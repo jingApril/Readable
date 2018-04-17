@@ -12,6 +12,7 @@ import {
 export default function posts(state = {}, action) {
   switch (action.type) {
     case "GET_POSTS":
+
       return action.payload;
 
     case "GET_POSTS_BYCAT":
@@ -19,27 +20,33 @@ export default function posts(state = {}, action) {
         ...state,
         posts: action.payload
       };
-    // case "UPVOTE_A_POST":
-    // case "DOWNVOTE_A_POST":
-    // console.log(action.payload.id)
-    //   return state.map(
-    //     post => (post.id === action.payload.id ? (post = action.payload) : post)
-    //   );
+    case "UPVOTE_A_POST":
+    case "DOWNVOTE_A_POST":
+    console.log(action)
+    console.log(state)
+    //return { post : action.post};
+    //  console.log(state)
+     //return action.payload
+      return state.map(
+        post => post.id === action.post.id ? (post = action.post) : post
+      );
 
-      case 'UPVOTE_A_POST':
-            return state.map(post => {
-              if (post.id === action.payload) {
-                post.voteScore += 1;
-              }
-              return post;
-            });
-          case 'DOWNVOTE_A_POST':
-            return state.map(post => {
-              if (post.id === action.payload) {
-                post.voteScore -= 1;
-              }
-              return post;
-            });
+          // case 'UPVOTE_A_POST':
+          //   return state.map(post => {
+          //     if (post.id === action.payload) {
+          //       //post.voteScore += 1;
+          //      posts: action.payload
+          //
+          //     }
+          //     return post;
+          //   });
+          // case 'DOWNVOTE_A_POST':
+          //   return state.map(post => {
+          //     if (post.id === action.payload) {
+          //       post.voteScore -= 1;
+          //     }
+          //     return post;
+          //   });
 
 
 
@@ -58,6 +65,7 @@ export default function posts(state = {}, action) {
       return [action.payload, ...state];
 
     case "EDIT_A_POST":
+
       return state.map(
         post => (post.id === action.payload.id ? (post = action.payload) : post)
       );

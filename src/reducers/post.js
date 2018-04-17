@@ -13,12 +13,10 @@ const post = (state = {}, action) => {
       // }
        return { ...action.payload };
 
-       // case "UPVOTE_A_POST":
-       // case "DOWNVOTE_A_POST":
-   		// return {
-   		// 	...state,
-       //             post: action.payload
-       //         };
+       case "UPVOTE_A_POST":
+       case "DOWNVOTE_A_POST":
+   		return action.post
+
     default:
       return state;
   }

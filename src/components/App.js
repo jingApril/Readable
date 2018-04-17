@@ -66,8 +66,7 @@ class App extends React.Component {
                   <Route exact path="/edit/:id" component={EditPost} />
                   <Route exact path="/:category" component={Posts} />
                   <Route exact path="/:category/:id" component={Post} />
-                  <Route exact path="/:category/:id" component={Post} />
-                  <Route component={NotFound}/>
+                <Route component={NotFound}/>
               </Switch>
           </main>
       </React.Fragment>
