@@ -3,7 +3,7 @@ import { Link, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import moment from "moment";
 import {
-getPosts,
+  getPosts,
   getOnePost,
   upVotePost,
   downVotePost,
@@ -16,7 +16,7 @@ class PostVote extends React.Component {
   };
 
   componentDidMount() {
-this.props.getPosts();
+    this.props.getPosts();
     const { id } = this.props.match.params;
     this.props.getOnePost(id);
     //console.log(this.props);
@@ -40,7 +40,7 @@ this.props.getPosts();
 
   render() {
     {
-    //  console.log(this.props.post.voteScore);
+      //  console.log(this.props.post.voteScore);
     }
     let post = this.props.post || [];
     if (this.state.deleted) {
@@ -91,10 +91,9 @@ this.props.getPosts();
   }
 }
 
-function mapStateToProps({posts,post}) {
-  return {posts,post};
+function mapStateToProps({ posts, post }) {
+  return { posts, post };
 }
-
 
 // function mapStateToProps ({ food, calendar }) {
 //   const dayOrder = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
@@ -123,4 +122,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostVote));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(PostVote)
+);

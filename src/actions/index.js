@@ -58,13 +58,13 @@ export const editPost = (id, post) => dispatch =>
   });
 
 export const upVotePost = id => dispatch =>
-  API.votePost(id, "upVote").then( post =>
-    dispatch({ type: UPVOTE_A_POST,  post })
+  API.votePost(id, "upVote").then(post =>
+    dispatch({ type: UPVOTE_A_POST, post })
   );
 
 export const downVotePost = id => dispatch =>
   API.votePost(id, "downVote").then(post =>
-    dispatch({ type: DOWNVOTE_A_POST,  post  })
+    dispatch({ type: DOWNVOTE_A_POST, post })
   );
 
 export const addPost = post => dispatch =>

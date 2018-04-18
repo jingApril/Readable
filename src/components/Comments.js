@@ -63,9 +63,9 @@ class Comments extends React.Component {
     });
   }
 
-  onClickCommentEdit = (id) => {
+  onClickCommentEdit = id => {
     const comments = this.props.comments;
-	console.log(comments);
+    console.log(comments);
     let comment = comments.filter(comment => comment.id === id);
     this.openModal();
     this.setState({
@@ -76,10 +76,10 @@ class Comments extends React.Component {
   };
 
   editCommentOnClick(commentId) {
-	//e.preventDefault();
+    //e.preventDefault();
     if (this.state.author && this.state.body) {
       const commentEdit = {
-        id:commentId,
+        id: commentId,
         parentId: this.props.match.params.id,
         timestamp: Date.now(),
         author: this.state.author,
@@ -91,7 +91,7 @@ class Comments extends React.Component {
           invalid: false
         })
       );
-     this.closeModal();
+      this.closeModal();
     } else {
       this.setState({
         invalid: true,
@@ -112,133 +112,125 @@ class Comments extends React.Component {
     let comments = Object.keys(this.props.comments).map(
       data => this.props.comments[data] || []
     );
-    //	const  {comments} = this.props;
-    // {
-    // 	console.log(comments)
-    // }
-    //const {comments} = this.props;
-    // let commentsNum = comments.length;
 
     return (
       <div className="col-12">
-		  <div className="mx-2">
-			  <h3 className="pb-2 pt-3 text-primary">Comments</h3>
-		  </div>
-		  <ul className="list-group">
-			  {comments.map(comment => (
-				  <li
-					  className="row pt-3 border-bottom border-gray mx-3"
-					  key={comment.id}
-      >
-					  <div className="row comment_body">
-						  <div className="col-12 comment-text">
-							  <p className="pb-3 mb-0 lh-125">{comment.body}</p>
-						  </div>
-					  </div>
-					  <div className="row comment_detail">
-						  <div className="col-4" id="title_item_left">
-							  <div className="d-inline p-2 text-gray-dark">
-								  {comment.author}
-							  </div>|
-							  <time>
-								  {moment(comment.timestamp).format("MMM-DD-YYYY hh:mma")}
-							  </time>|
-							  <div className="d-inline p-2 text-gray-dark">
-								  {comment.voteScore} vote
-							  </div>
-						  </div>
-						  <div
-							  className="col-8 d-flex flex-row-reverse"
-							  id="title_item_right"
-						  >
-							  <i
-								  className="material-icons"
-								  onClick={() => this.onClickUpVote(comment.id)}
-							  >
-								  thumb_up
-							  </i>
-							  <div className="d-inline p-2 text-dark">
-								  {comment.voteScore}
-							  </div>
-							  <i
-								  className="material-icons"
-								  onClick={() => this.onClickDownVote(comment.id)}
-							  >
-								  thumb_down
-							  </i>
-							  <div
-								  className="d-inline p-2 delete text-primary"
-								  data-toggle="modal"
-								  data-target="#pop_delete"
-								  onClick={() => this.onClickDeleteComment(comment.id)}
-							  >
-								  Delete
-							  </div>
-							  <div
-								  className="d-inline p-2 edit text-primary"
-								  onClick={() => this.onClickCommentEdit(comment.id)}
-							  >
-								  Edit
-							  </div>
-						  </div>
-					  </div>
-				  </li>
-			  ))}
-		  </ul>
-		  <AddComment />
-		  <Modal
-			  isOpen={this.state.modalIsOpen}
-			  closeTimeoutMS={4}
-			  className="Modal"
-			  onRequestClose={this.closeModal}
-		  >
-			  <div className="modal-dialog modal-dialog-centered" role="document">
-				  <div className="modal-content">
-					  <div className="modal-header">
-						  <h5 className="modal-title" id="exampleModalLongTitle">
-							  New Comment
-						  </h5>
-						  <button
-							  type="button"
-							  className="close"
-							  onClick={this.closeModal}
-						  >
-							  <span aria-hidden="true">&times;</span>
-						  </button>
-					  </div>
-					  <div className="modal-body" id="post-form">
-						  <form className="clearfix">
-							  <div className="form-group">
-								  <label>author:</label>
-								  <input
-									  type="text"
-									  className="form-control"
-									  id="title"
-									  disabled
-									  // value={this.state.author}
-									  // onChange={e => this.onChangeAuthor(e)}
-								  />
-							  </div>
+          <div className="mx-2">
+              <h3 className="pb-2 pt-3 text-primary">Comments</h3>
+          </div>
+          <ul className="list-group">
+              {comments.map(comment => (
+                  <li
+                      className="row pt-3 border-bottom border-gray mx-3"
+                      key={comment.id}
+                  >
+                      <div className="row comment_body">
+                          <div className="col-12 comment-text">
+                              <p className="pb-3 mb-0 lh-125">{comment.body}</p>
+                          </div>
+                      </div>
+                      <div className="row comment_detail">
+                          <div className="col-4" id="title_item_left">
+                              <div className="d-inline p-2 text-gray-dark">
+                                  {comment.author}
+                              </div>|
+                              <time>
+                                  {moment(comment.timestamp).format("MMM-DD-YYYY hh:mma")}
+                              </time>|
+                              <div className="d-inline p-2 text-gray-dark">
+                                  {comment.voteScore} vote
+                              </div>
+                          </div>
+                          <div
+                              className="col-8 d-flex flex-row-reverse"
+                              id="title_item_right"
+                          >
+                              <i
+                                  className="material-icons"
+                                  onClick={() => this.onClickUpVote(comment.id)}
+                              >
+                                  thumb_up
+                              </i>
+                              <div className="d-inline p-2 text-dark">
+                                  {comment.voteScore}
+                              </div>
+                              <i
+                                  className="material-icons"
+                                  onClick={() => this.onClickDownVote(comment.id)}
+                              >
+                                  thumb_down
+                              </i>
+                              <div
+                                  className="d-inline p-2 delete text-primary"
+                                  data-toggle="modal"
+                                  data-target="#pop_delete"
+                                  onClick={() => this.onClickDeleteComment(comment.id)}
+                              >
+                                  Delete
+                              </div>
+                              <div
+                                  className="d-inline p-2 edit text-primary"
+                                  onClick={() => this.onClickCommentEdit(comment.id)}
+                              >
+                                  Edit
+                              </div>
+                          </div>
+                      </div>
+                  </li>
+              ))}
+          </ul>
+          <AddComment />
+          <Modal
+              isOpen={this.state.modalIsOpen}
+              closeTimeoutMS={4}
+              className="Modal"
+              onRequestClose={this.closeModal}
+          >
+              <div className="modal-dialog modal-dialog-centered" role="document">
+                  <div className="modal-content">
+                      <div className="modal-header">
+                          <h5 className="modal-title" id="exampleModalLongTitle">
+                              New Comment
+                          </h5>
+                          <button
+                              type="button"
+                              className="close"
+                              onClick={this.closeModal}
+                          >
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div className="modal-body" id="post-form">
+                          <form className="clearfix">
+                              <div className="form-group">
+                                  <label>author:</label>
+                                  <input
+                                      type="text"
+                                      className="form-control"
+                                      id="title"
+                                      disabled
+                    />
+                  </div>
 
-							  <div className="form-group">
-								  <label>Content:</label>
-								  <textarea
-									  className="form-control"
-									  id="content"
-									  rows="3"
-									  value={this.state.body}
-									  onChange={e => this.onChangeComment(e)}
-								  />
-							  </div>
-						  </form>
-					  </div>
-					  <div className="modal-footer">
-						  <button
-							  type="submit"
-							  className="btn btn-primary"
-							  onClick={e => this.editCommentOnClick(this.state.commentId)}
-						  >
-							  submit
+                  <div className="form-group">
+                    <label>Content:</label>
+                    <textarea
+                      className="form-control"
+                      id="content"
+                      rows="3"
+                      value={this.state.body}
+                      onChange={e => this.onChangeComment(e)}
+                    />
+                  </div>
+                </form>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  onClick={e => this.editCommentOnClick(this.state.commentId)}
+                >
+                  submit
                 </button>
                 <button
                   type="button"

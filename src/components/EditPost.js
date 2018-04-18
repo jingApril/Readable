@@ -107,69 +107,70 @@ class EditPost extends React.Component {
     ));
     return (
       <div className="col-12 p-3 bg-white rounded box-shadow clearfix">
-          <div>{this.state.invalid && <h3>Please enter all values...</h3>}</div>
+        <div>{this.state.invalid && <h3>Please enter all values...</h3>}</div>
 
-          <form>
-              <div className="form-group">
-                  <div className="form-group">
-                      <label>Title</label>
-                      <input
-                          type="text"
-                          className="form-control"
-                          id="title"
-                          placeholder="Title"
-                          value={this.state.title}
-                          onChange={e => this.onTitleChange(e)}
-                      />
-                  </div>
-              </div>
-              <div className="form-group">
-                  <label>Author</label>
-                  <input
-                      type="text"
-                      className="form-control"
-                      id="author"
-                      placeholder="Your name"
-                      value={this.state.author}
-                      onChange={e => this.onAuthorChange(e)}
-                  />
-              </div>
-              <div className="form-group">
-                  <label>Category</label>
-                  <select
-                      className="form-control"
-                      id="category"
-                      value={this.state.category}
-                      onChange={e => this.onCategoryChange(e)}
-                  >
-                      {listOpt}
-                  </select>
-              </div>
-              <div className="form-group">
-                  <label>Content</label>
-                  <textarea
-                      className="form-control"
-                      id="content"
-                      rows="3"
-                      value={this.state.body}
-                      onChange={e => this.onBodyChange(e)}
-                  />
-              </div>
-              <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={this.tobackClick}
-              >
-                  cancle
-              </button>
-              <button
-                  type="submit"
-                  className="btn btn-primary"
-                  onClick={this.editSubmitOnClick.bind(this)}
-              >
-                  Submit
-              </button>
-          </form>
+        <form>
+          <div className="form-group">
+            <div className="form-group">
+              <label>Title</label>
+              <input
+                type="text"
+                className="form-control"
+                id="title"
+                placeholder="Title"
+                value={this.state.title}
+                onChange={e => this.onTitleChange(e)}
+              />
+            </div>
+          </div>
+          <div className="form-group">
+            <label>Author</label>
+            <input
+              type="text"
+              className="form-control"
+              id="author"
+              placeholder="Your name"
+              value={this.state.author}
+              onChange={e => this.onAuthorChange(e)}
+            />
+          </div>
+          <div className="form-group">
+            <label>Category</label>
+            <select
+              className="form-control"
+              id="category"
+              value={this.state.category}
+              onChange={e => this.onCategoryChange(e)}
+            >
+              {listOpt}
+            </select>
+          </div>
+          <div className="form-group">
+            <label>Content</label>
+            <textarea
+              className="form-control"
+              id="content"
+              rows="3"
+              value={this.state.body}
+              onChange={e => this.onBodyChange(e)}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={this.editSubmitOnClick.bind(this)}
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={this.tobackClick}
+          >
+            cancel
+          </button>
+        </form>
 
         <Modal
           isOpen={this.state.modalIsOpen}

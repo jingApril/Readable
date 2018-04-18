@@ -6,6 +6,11 @@ import { getAllCategories, addPost, getPosts } from "../actions";
 import Modal from "react-modal";
 
 class AddPost extends React.Component {
+  constructor(props) {
+    super(props);
+    this.tobackClick = this.tobackClick.bind(this);
+  }
+
   state = {
     title: "",
     body: "",
@@ -30,7 +35,7 @@ class AddPost extends React.Component {
   };
 
   tobackClick = () => {
-    this.props.history.push("/");
+    this.props.history.goBack();
   };
 
   onChangeTitle = title => {
@@ -67,8 +72,6 @@ class AddPost extends React.Component {
         timestamp: Date.now()
       };
 
-      console.log(newpost);
-      // this.props.savePost(post)
       this.props.savePost(newpost).then(() =>
         this.setState({
           success: true,
@@ -84,17 +87,6 @@ class AddPost extends React.Component {
       this.setState({ success: false, invalid: true });
     }
   };
-
-  // resetPost = () => {
-  //   this.setState({
-  //     success: false,
-  //     title: '',
-  //     author: '',
-  //     category: '',
-  //     body: '',
-  //     invalid: false
-  //   });
-  // }
 
   render() {
     return (
@@ -149,12 +141,20 @@ class AddPost extends React.Component {
               onChange={e => this.onChangeBody(e)}
             />
           </div>
+
           <button
             type="submit"
             className="btn btn-primary"
             onClick={this.handleSubmit.bind(this)}
           >
             Submit
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={this.tobackClick}
+          >
+            cancel
           </button>
         </form>
 

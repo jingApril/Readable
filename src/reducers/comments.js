@@ -25,13 +25,12 @@ export default function comments(state = {}, action) {
       return state.concat(action.newcomment);
 
     case "EDIT_A_COMMENT":
-
       return state.map(comment => {
-       if (comment.id ===  action.comment.id) {
-         comment.body = action.comment.body;
-       }
-       return comment;
-     });
+        if (comment.id === action.comment.id) {
+          comment.body = action.comment.body;
+        }
+        return comment;
+      });
 
     case "DELETE_A_COMMENT":
       return state.filter(comment => comment.id !== action.comment.id);

@@ -12,7 +12,6 @@ import {
 export default function posts(state = {}, action) {
   switch (action.type) {
     case "GET_POSTS":
-
       return action.payload;
 
     case "GET_POSTS_BYCAT":
@@ -22,60 +21,20 @@ export default function posts(state = {}, action) {
       };
     case "UPVOTE_A_POST":
     case "DOWNVOTE_A_POST":
-    console.log(action)
-    console.log(state)
-    //return { post : action.post};
-    //  console.log(state)
-     //return action.payload
       return state.map(
-        post => post.id === action.post.id ? (post = action.post) : post
+        post => (post.id === action.post.id ? (post = action.post) : post)
       );
-
-          // case 'UPVOTE_A_POST':
-          //   return state.map(post => {
-          //     if (post.id === action.payload) {
-          //       //post.voteScore += 1;
-          //      posts: action.payload
-          //
-          //     }
-          //     return post;
-          //   });
-          // case 'DOWNVOTE_A_POST':
-          //   return state.map(post => {
-          //     if (post.id === action.payload) {
-          //       post.voteScore -= 1;
-          //     }
-          //     return post;
-          //   });
-
-
-
-
-
-
-     // return{
-     // post: action.payload
-     //
-     // }
-    //  return state.map(
-    //    post =>(post.id === action.post.id ? (post = action.post) : post)
-    // );
 
     case "ADD_POST":
       return [action.payload, ...state];
 
     case "EDIT_A_POST":
-
       return state.map(
         post => (post.id === action.payload.id ? (post = action.payload) : post)
       );
 
-
-
     case "DELETE_A_POST":
       return state.filter(post => post.id !== action.payload.id);
-
-
 
     default:
       return state;

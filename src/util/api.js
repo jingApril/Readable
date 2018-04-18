@@ -80,7 +80,6 @@ export const fetchOnePost = id =>
     .then(res => res.json())
     .then(data => data);
 
-
 // comments
 export const fetchComments = id =>
   fetch(`${api}/posts/${id}/comments`, {
@@ -101,9 +100,7 @@ export const getComment = id =>
   fetch(`${api}/comments/${id}`, {
     method: "GET",
     headers
-  })
-    .then(res => res.json())
-
+  }).then(res => res.json());
 
 export const voteComment = (id, option) =>
   fetch(`${api}/comments/${id}`, {

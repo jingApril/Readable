@@ -68,18 +68,16 @@ class Post extends React.Component {
 }
 
 function mapStateToProps(post) {
-  return  post;
+  return post;
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-
     getOnePost: id => dispatch(getOnePost(id)),
     upVote: id => dispatch(upVotePost(id)),
     downVote: id => dispatch(downVotePost(id)),
     deletePost: id => dispatch(deletePost(id))
   };
 }
-
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Post));
